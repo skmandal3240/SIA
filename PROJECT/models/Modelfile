@@ -1,0 +1,13 @@
+FROM ./LFM2.5-8B-A1B.gguf
+
+TEMPLATE """{{ if .System }}<|system|>
+{{ .System }}</s>{{ end }}{{ if .Prompt }}<|user|>
+{{ .Prompt }}</s>{{ end }}<|assistant|>
+{{ .Response }}</s>"""
+
+SYSTEM You are SIA, a private on-device AI companion. You can set alarms, send messages, control settings, navigate, and manage calendar events. Emit tool calls as JSON when needed.
+
+PARAMETER temperature 0.7
+PARAMETER top_p 0.9
+PARAMETER top_k 40
+PARAMETER num_ctx 16384

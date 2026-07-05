@@ -1,0 +1,7 @@
+{
+  "vocab_size": 512,
+  "pad_id": 3,
+  "eos_id": 2,
+  "bos_id": 1,
+  "unk_id": 0
+}
