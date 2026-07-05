@@ -3,123 +3,11 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
       },
       {
         "role": "user",
-        "content": "Kal 7:00 AM client meeting add karo."
-      },
-      {
-        "role": "assistant",
-        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"client meeting\", \"time\": \"7:00 AM\"}<|sia_endcall|>"
-      }
-    ]
-  },
-  {
-    "messages": [
-      {
-        "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
-      },
-      {
-        "role": "user",
-        "content": "Message Sneha: I will be there in 10 minutes."
-      },
-      {
-        "role": "assistant",
-        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Sneha\", \"body\": \"Pahunch gaya\"}<|sia_endcall|>"
-      }
-    ]
-  },
-  {
-    "messages": [
-      {
-        "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
-      },
-      {
-        "role": "user",
-        "content": "mobile_data band karo."
-      },
-      {
-        "role": "assistant",
-        "content": "<|sia_tool|>toggle_setting<|sia_call|>{\"setting\": \"mobile_data\", \"state\": \"on\"}<|sia_endcall|>"
-      }
-    ]
-  },
-  {
-    "messages": [
-      {
-        "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
-      },
-      {
-        "role": "user",
-        "content": "bluetooth chalu karo."
-      },
-      {
-        "role": "assistant",
-        "content": "<|sia_tool|>toggle_setting<|sia_call|>{\"setting\": \"bluetooth\", \"state\": \"on\"}<|sia_endcall|>"
-      }
-    ]
-  },
-  {
-    "messages": [
-      {
-        "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
-      },
-      {
-        "role": "user",
-        "content": "Wake me up at 12:30 PM tomorrow."
-      },
-      {
-        "role": "assistant",
-        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"12:30 PM\", \"repeat\": \"daily\"}<|sia_endcall|>"
-      }
-    ]
-  },
-  {
-    "messages": [
-      {
-        "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
-      },
-      {
-        "role": "user",
-        "content": "Alarm lagao 8:45 AM ka."
-      },
-      {
-        "role": "assistant",
-        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"8:45 AM\", \"repeat\": \"once\"}<|sia_endcall|>"
-      }
-    ]
-  },
-  {
-    "messages": [
-      {
-        "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
-      },
-      {
-        "role": "user",
-        "content": "Mujhe 11:30 PM uthana hai."
-      },
-      {
-        "role": "assistant",
-        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"11:30 PM\", \"repeat\": \"daily\"}<|sia_endcall|>"
-      }
-    ]
-  },
-  {
-    "messages": [
-      {
-        "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
-      },
-      {
-        "role": "user",
-        "content": "Call Bhaiya."
+        "content": "Bhaiya se baat karo."
       },
       {
         "role": "assistant",
@@ -131,15 +19,15 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
       },
       {
         "role": "user",
-        "content": "Wake me up at 11:30 PM tomorrow."
+        "content": "Call Amit."
       },
       {
         "role": "assistant",
-        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"11:30 PM\", \"repeat\": \"daily\"}<|sia_endcall|>"
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Amit\"}<|sia_endcall|>"
       }
     ]
   },
@@ -147,15 +35,15 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
       },
       {
         "role": "user",
-        "content": "Calendar chalu karo."
+        "content": "Screen brightness 50% karo."
       },
       {
         "role": "assistant",
-        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Calendar\"}<|sia_endcall|>"
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"50%\"}<|sia_endcall|>"
       }
     ]
   },
@@ -163,15 +51,15 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
       },
       {
         "role": "user",
-        "content": "Add doctor appointment to my calendar at 12:30 PM."
+        "content": "Brightness 30% karo."
       },
       {
         "role": "assistant",
-        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"doctor appointment\", \"time\": \"12:30 PM\"}<|sia_endcall|>"
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"30%\"}<|sia_endcall|>"
       }
     ]
   },
@@ -179,15 +67,15 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
       },
       {
         "role": "user",
-        "content": "Add team call to my calendar at 8:45 AM."
+        "content": "Gandhi Maidan le chalo."
       },
       {
         "role": "assistant",
-        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"team call\", \"time\": \"8:45 AM\"}<|sia_endcall|>"
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Gandhi Maidan\"}<|sia_endcall|>"
       }
     ]
   },
@@ -195,7 +83,39 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Create a calendar event for grocery shopping at 9:15 PM."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"grocery shopping\", \"time\": \"9:15 PM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Open directions to Patna Junction."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Patna Junction\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
       },
       {
         "role": "user",
@@ -211,15 +131,15 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
       },
       {
         "role": "user",
-        "content": "Set an alarm for 6:30 AM."
+        "content": "Priya se baat karo."
       },
       {
         "role": "assistant",
-        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"6:30 AM\", \"repeat\": \"daily\"}<|sia_endcall|>"
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Priya\"}<|sia_endcall|>"
       }
     ]
   },
@@ -227,87 +147,7 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
-      },
-      {
-        "role": "user",
-        "content": "Kal 10:00 AM client meeting add karo."
-      },
-      {
-        "role": "assistant",
-        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"client meeting\", \"time\": \"10:00 AM\"}<|sia_endcall|>"
-      }
-    ]
-  },
-  {
-    "messages": [
-      {
-        "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
-      },
-      {
-        "role": "user",
-        "content": "Set an alarm for 7:00 AM."
-      },
-      {
-        "role": "assistant",
-        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"7:00 AM\", \"repeat\": \"daily\"}<|sia_endcall|>"
-      }
-    ]
-  },
-  {
-    "messages": [
-      {
-        "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
-      },
-      {
-        "role": "user",
-        "content": "Launch Calendar."
-      },
-      {
-        "role": "assistant",
-        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Calendar\"}<|sia_endcall|>"
-      }
-    ]
-  },
-  {
-    "messages": [
-      {
-        "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
-      },
-      {
-        "role": "user",
-        "content": "WhatsApp kholo."
-      },
-      {
-        "role": "assistant",
-        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"WhatsApp\"}<|sia_endcall|>"
-      }
-    ]
-  },
-  {
-    "messages": [
-      {
-        "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
-      },
-      {
-        "role": "user",
-        "content": "Switch off airplane_mode."
-      },
-      {
-        "role": "assistant",
-        "content": "<|sia_tool|>toggle_setting<|sia_call|>{\"setting\": \"airplane_mode\", \"state\": \"on\"}<|sia_endcall|>"
-      }
-    ]
-  },
-  {
-    "messages": [
-      {
-        "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
       },
       {
         "role": "user",
@@ -315,7 +155,7 @@
       },
       {
         "role": "assistant",
-        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"12:30 PM\", \"repeat\": \"daily\"}<|sia_endcall|>"
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"12:30 PM\", \"repeat\": \"once\"}<|sia_endcall|>"
       }
     ]
   },
@@ -323,155 +163,11 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
       },
       {
         "role": "user",
-        "content": "Kal 8:45 AM client meeting add karo."
-      },
-      {
-        "role": "assistant",
-        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"client meeting\", \"time\": \"8:45 AM\"}<|sia_endcall|>"
-      }
-    ]
-  },
-  {
-    "messages": [
-      {
-        "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
-      },
-      {
-        "role": "user",
-        "content": "Kal 10:00 AM family dinner add karo."
-      },
-      {
-        "role": "assistant",
-        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"family dinner\", \"time\": \"10:00 AM\"}<|sia_endcall|>"
-      }
-    ]
-  },
-  {
-    "messages": [
-      {
-        "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
-      },
-      {
-        "role": "user",
-        "content": "Mujhe 7:00 AM uthana hai."
-      },
-      {
-        "role": "assistant",
-        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"7:00 AM\", \"repeat\": \"daily\"}<|sia_endcall|>"
-      }
-    ]
-  },
-  {
-    "messages": [
-      {
-        "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
-      },
-      {
-        "role": "user",
-        "content": "Show me the way to Danapur."
-      },
-      {
-        "role": "assistant",
-        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Danapur\"}<|sia_endcall|>"
-      }
-    ]
-  },
-  {
-    "messages": [
-      {
-        "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
-      },
-      {
-        "role": "user",
-        "content": "Wake me up at 8:45 AM tomorrow."
-      },
-      {
-        "role": "assistant",
-        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"8:45 AM\", \"repeat\": \"once\"}<|sia_endcall|>"
-      }
-    ]
-  },
-  {
-    "messages": [
-      {
-        "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
-      },
-      {
-        "role": "user",
-        "content": "Text Papa that I am running late."
-      },
-      {
-        "role": "assistant",
-        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Papa\", \"body\": \"Ghar ja raha hoon\"}<|sia_endcall|>"
-      }
-    ]
-  },
-  {
-    "messages": [
-      {
-        "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
-      },
-      {
-        "role": "user",
-        "content": "Navigate to Bihta."
-      },
-      {
-        "role": "assistant",
-        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Bihta\"}<|sia_endcall|>"
-      }
-    ]
-  },
-  {
-    "messages": [
-      {
-        "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
-      },
-      {
-        "role": "user",
-        "content": "Turn flashlight on."
-      },
-      {
-        "role": "assistant",
-        "content": "<|sia_tool|>toggle_setting<|sia_call|>{\"setting\": \"flashlight\", \"state\": \"on\"}<|sia_endcall|>"
-      }
-    ]
-  },
-  {
-    "messages": [
-      {
-        "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
-      },
-      {
-        "role": "user",
-        "content": "Open Calendar."
-      },
-      {
-        "role": "assistant",
-        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Calendar\"}<|sia_endcall|>"
-      }
-    ]
-  },
-  {
-    "messages": [
-      {
-        "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
-      },
-      {
-        "role": "user",
-        "content": "Didi se baat karo."
+        "content": "Call Didi."
       },
       {
         "role": "assistant",
@@ -483,15 +179,15 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
       },
       {
         "role": "user",
-        "content": "Set brightness to 30%."
+        "content": "Create a calendar event for doctor appointment at 11:30 PM."
       },
       {
         "role": "assistant",
-        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"30%\"}<|sia_endcall|>"
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"doctor appointment\", \"time\": \"11:30 PM\"}<|sia_endcall|>"
       }
     ]
   },
@@ -499,15 +195,15 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
       },
       {
         "role": "user",
-        "content": "Alarm lagao 9:15 PM ka."
+        "content": "Amit se baat karo."
       },
       {
         "role": "assistant",
-        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"9:15 PM\", \"repeat\": \"daily\"}<|sia_endcall|>"
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Amit\"}<|sia_endcall|>"
       }
     ]
   },
@@ -515,11 +211,171 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
       },
       {
         "role": "user",
-        "content": "Brightness 20% karo."
+        "content": "Start Settings."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Settings\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Open Messages."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Messages\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Open Camera."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Camera\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Patna Junction le chalo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Patna Junction\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Mujhe 8:45 AM uthana hai."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"8:45 AM\", \"repeat\": \"daily\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Message Priya: I will be there in 10 minutes."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Priya\", \"body\": \"I will call you back\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Turn mobile_data on."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>toggle_setting<|sia_call|>{\"setting\": \"mobile_data\", \"state\": \"on\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Set an alarm for 10:00 AM."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"10:00 AM\", \"repeat\": \"once\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Phone chalu karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Phone\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Enable bluetooth."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>toggle_setting<|sia_call|>{\"setting\": \"bluetooth\", \"state\": \"on\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Make screen 20% bright."
       },
       {
         "role": "assistant",
@@ -531,7 +387,87 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Turn hotspot on."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>toggle_setting<|sia_call|>{\"setting\": \"hotspot\", \"state\": \"off\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Wake me up at 12:30 PM tomorrow."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"12:30 PM\", \"repeat\": \"once\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Phone Bhaiya."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Bhaiya\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Add team call to my calendar at 5:00 PM."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"team call\", \"time\": \"5:00 PM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Wake me up at 12:30 PM tomorrow."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"12:30 PM\", \"repeat\": \"once\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
       },
       {
         "role": "user",
@@ -547,15 +483,15 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
       },
       {
         "role": "user",
-        "content": "Brightness 80% karo."
+        "content": "Wake me up at 5:00 PM tomorrow."
       },
       {
         "role": "assistant",
-        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"80%\"}<|sia_endcall|>"
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"5:00 PM\", \"repeat\": \"daily\"}<|sia_endcall|>"
       }
     ]
   },
@@ -563,7 +499,775 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "mobile_data chalu karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>toggle_setting<|sia_call|>{\"setting\": \"mobile_data\", \"state\": \"on\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Make screen 50% bright."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"50%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Start WhatsApp."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"WhatsApp\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Message Amit: I will be there in 10 minutes."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Amit\", \"body\": \"I will call you back\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Dial Bhaiya."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Bhaiya\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Schedule client meeting at 11:30 PM tomorrow."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"client meeting\", \"time\": \"11:30 PM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Message Priya: I will be there in 10 minutes."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Priya\", \"body\": \"Will reply soon\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Schedule team call at 9:15 PM tomorrow."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"team call\", \"time\": \"9:15 PM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Alarm lagao 10:00 AM ka."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"10:00 AM\", \"repeat\": \"once\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Kal 7:00 AM client meeting add karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"client meeting\", \"time\": \"7:00 AM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Open Phone."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Phone\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Create a calendar event for doctor appointment at 5:00 PM."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"doctor appointment\", \"time\": \"5:00 PM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Bhaiya ko message bhejo: main pahunch raha hoon."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Bhaiya\", \"body\": \"Meeting me hoon\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Set brightness to 30%."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"30%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Brightness 10% karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"10%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Mujhe 11:30 PM uthana hai."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"11:30 PM\", \"repeat\": \"once\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Set brightness to 20%."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"20%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Dial Sneha."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Sneha\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Text Rahul that I am running late."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Rahul\", \"body\": \"On my way\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Disable flashlight."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>toggle_setting<|sia_call|>{\"setting\": \"flashlight\", \"state\": \"off\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Dial Rahul."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Rahul\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Navigate to Bihta."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Bihta\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Camera kholo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Camera\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Show me the way to Patna Junction."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Patna Junction\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Navigate to Patna Junction."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Patna Junction\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Didi ko call karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Didi\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Open WhatsApp."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"WhatsApp\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Sneha ko call karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Sneha\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Create a calendar event for family dinner at 10:00 AM."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"family dinner\", \"time\": \"10:00 AM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Dial Amit."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Amit\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Priya ko WhatsApp karo: ghar se nikla."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Priya\", \"body\": \"Ghar ja raha hoon\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Alarm lagao 12:30 PM ka."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"12:30 PM\", \"repeat\": \"daily\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Start Maps."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Maps\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Screen brightness 10% karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"10%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Alarm lagao 9:15 PM ka."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"9:15 PM\", \"repeat\": \"once\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Start Camera."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Camera\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Schedule grocery shopping at 11:30 PM tomorrow."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"grocery shopping\", \"time\": \"11:30 PM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Boss ko message bhejo: main pahunch raha hoon."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Boss\", \"body\": \"Call me\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Switch off flashlight."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>toggle_setting<|sia_call|>{\"setting\": \"flashlight\", \"state\": \"on\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Priya ko WhatsApp karo: ghar se nikla."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Priya\", \"body\": \"Pahunch gaya\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Text Bhaiya that I am running late."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Bhaiya\", \"body\": \"I will call you back\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Priya ko call karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Priya\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Call Amit."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Amit\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Launch WhatsApp."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"WhatsApp\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Text Amit that I am running late."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Amit\", \"body\": \"I will call you back\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Camera kholo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Camera\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Schedule doctor appointment at 7:00 AM tomorrow."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"doctor appointment\", \"time\": \"7:00 AM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Call Boss."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Boss\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
       },
       {
         "role": "user",
@@ -579,15 +1283,15 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
       },
       {
         "role": "user",
-        "content": "Kal 6:30 AM family dinner add karo."
+        "content": "Wake me up at 12:30 PM tomorrow."
       },
       {
         "role": "assistant",
-        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"family dinner\", \"time\": \"6:30 AM\"}<|sia_endcall|>"
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"12:30 PM\", \"repeat\": \"once\"}<|sia_endcall|>"
       }
     ]
   },
@@ -595,15 +1299,15 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
       },
       {
         "role": "user",
-        "content": "Alarm lagao 7:00 AM ka."
+        "content": "Make screen 10% bright."
       },
       {
         "role": "assistant",
-        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"7:00 AM\", \"repeat\": \"once\"}<|sia_endcall|>"
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"10%\"}<|sia_endcall|>"
       }
     ]
   },
@@ -611,11 +1315,107 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
       },
       {
         "role": "user",
-        "content": "Open Calendar."
+        "content": "Open directions to Danapur."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Danapur\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Open directions to Danapur."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Danapur\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Kal 10:00 AM family dinner add karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"family dinner\", \"time\": \"10:00 AM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Wake me up at 11:30 PM tomorrow."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"11:30 PM\", \"repeat\": \"daily\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Set brightness to 20%."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"20%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Launch Music."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Music\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Launch Calendar."
       },
       {
         "role": "assistant",
@@ -627,15 +1427,175 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
       },
       {
         "role": "user",
-        "content": "Navigate to Rajendra Nagar."
+        "content": "Kal 6:30 AM doctor appointment add karo."
       },
       {
         "role": "assistant",
-        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Rajendra Nagar\"}<|sia_endcall|>"
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"doctor appointment\", \"time\": \"6:30 AM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Brightness 30% karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"30%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Text Priya that I am running late."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Priya\", \"body\": \"I will call you back\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Message Papa: I will be there in 10 minutes."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Papa\", \"body\": \"Pahunch gaya\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Amit se baat karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Amit\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Screen brightness 80% karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"80%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Set brightness to 30%."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"30%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Make screen 30% bright."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"30%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Screen brightness 100% karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"100%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Start Messages."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Messages\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. When the user wants a device action, you MUST emit exactly one SIA tool call in this format: <|sia_tool|>TOOL_NAME<|sia_call|>{\"arg\":\"value\"}<|sia_endcall|>. Do not explain. Do not refuse. No extra text."
+      },
+      {
+        "role": "user",
+        "content": "Amit ko call karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Amit\"}<|sia_endcall|>"
       }
     ]
   }
