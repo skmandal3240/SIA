@@ -171,6 +171,20 @@ def real_run(args: argparse.Namespace) -> int:
     from datasets import load_dataset  # type: ignore
     dataset = load_dataset("json", data_files=str(ds_path), split="train")
 
+    chat_template = tokenizer.chat_template or (
+        "{% for message in messages %}{{ message.role }}: {{ message.content }}\n{% endfor %}"
+        "assistant: "
+    )
+    tokenizer.chat_template = chat_template
+
+    def formatting_func(examples):
+        texts = []
+        for messages in examples["messages"]:
+            texts.append(tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=False))
+        return {"text": texts}
+
+    dataset = dataset.map(formatting_func, batched=True, remove_columns=dataset.column_names)
+
     # Response-only loss: mask user turns; TRL handles this via SFTTrainer.
     trainer = SFTTrainer(
         model=model,
