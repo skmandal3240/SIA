@@ -10,6 +10,12 @@ build/
 sia-lab/infra/outputs/
 sia-lab/posttrain/outputs/
 
+# Allow adapter metadata to be tracked, but not the big weights
+!sia-lab/posttrain/adapter/
+sia-lab/posttrain/adapter/**/*.safetensors
+sia-lab/posttrain/adapter/**/*.bin
+sia-lab/posttrain/adapter/**/tokenizer.json
+
 # Models and data blobs
 *.gguf
 *.onnx
