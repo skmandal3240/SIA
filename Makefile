@@ -2,9 +2,9 @@
 
 PYTHON := python3
 
-FILES := sia-lab/posttrain/sft.py sia-lab/infra/quantize.py sia-lab/infra/benchmark.py sia-lab/safety/privacy.py
+FILES := $(shell find sia-lab -name '*.py' -type f)
 
-ci: lint validate smoke status
+ci: lint validate smoke eval status
 
 lint:
 	@echo "==> lint: checking Python scripts"
@@ -22,6 +22,14 @@ smoke:
 	$(PYTHON) sia-lab/posttrain/sft.py
 	$(PYTHON) sia-lab/infra/quantize.py --bits 8
 	$(PYTHON) sia-lab/infra/benchmark.py
+
+eval:
+	@echo "==> eval: memory + benchmark harness"
+	$(PYTHON) sia-lab/memory/tokencake.py
+	$(PYTHON) sia-lab/memory/episodic.py
+	$(PYTHON) sia-lab/memory/graphrag.py
+	$(PYTHON) sia-lab/eval/multi_hop.py
+	$(PYTHON) sia-lab/eval/governor.py
 
 status:
 	@echo "==> status: artifact inventory"
