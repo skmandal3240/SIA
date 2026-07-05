@@ -2,70 +2,54 @@
 
 SIA is an edge-first AI companion that runs locally on phones, laptops, mini-PCs, and browser tabs. It is designed for Indian users and is DPDP-compliant by construction: raw screen, voice, and personal data stay on the device by default.
 
-## Layer map
+## Public release readiness
 
-| Layer | Name | What lives here | Status |
-|-------|------|-----------------|--------|
-| L0 | Substrate | LFM2.5 base model served via GGUF (Ollama) and ONNX (browser / WebGPU) | P0 dry-run passing |
-| L1 | Fast path | Direct LFM2.5 inference for single-turn and chat queries | scaffolded |
-| L2 | Action adapter | LoRA device-actions adapter (alarms, calls, messages, maps, toggles) | P1 dry-run passing |
-| L3 | Reasoner | SIR two-speed reasoner: fast path + deep recurrent-depth core | planned |
-| L4 | Memory | TokenCake working memory + episodic store + GraphRAG semantic store | planned |
-| L5 | Swarm | Multi-node delegation, simulation, and Mixture-of-Students distillation | planned |
+| Phase | Goal | Status | Evidence |
+|-------|------|--------|----------|
+| **P0 — Substrate** | LFM2.5 runs on Ollama + browser ONNX; 125K context proven | 80% | Modelfile exists, P0 dry-run passes, live GGUF not yet placed |
+| **P1 — Action adapter** | Device-actions LoRA with 95% held-out tool-call accuracy | 90% | 200-example dataset, Unsloth SFT pipeline fixed, LoRA trained and downloaded |
+| **P2 — Shell** | See screen → reason → point/act + speak, shared dispatcher | 70% | Linux shell stubs, dispatcher, tag parser, tests passing; real macOS capture/audio pending |
+| **P3 — Deep core** | RDT-MoE+MLA+ACT reasoner beats fast path on multi-hop | 60% | Tiny from-scratch model overfits on CPU; up-cycle from LFM2.5 not done |
+| **P4 — Memory + eval** | TokenCake + episodic + GraphRAG + governor tests | 60% | All modules and tests in repo, not yet wired to live reasoner |
+| **P5 — Swarm + distillation** | N=2 swarm loop and Mixture-of-Students lift | 0% | Not started |
+| **P6 — Harden** | Governor authority, DPDP hooks, quant matrix, OTA adapters | 50% | Privacy egress test passes; full hardening not done |
+
+**Overall V1 public release readiness: ~65%.**
+
+## What V1 still needs
+
+1. **Real LFM2.5 GGUF in `PROJECT/models/` and verified Ollama run.**
+2. **P1 adapter evaluated on held-out tool calls and merged into a servable GGUF.**
+3. **macOS shell with real screen capture, STT, TTS, and OS permissions.**
+4. **Deep core up-cycled from LFM2.5 and proven to beat fast path on multi-hop.**
+5. **Memory stores wired to the reasoner and shell.**
+6. **Swarm demo with measured distillation lift.**
+7. **Packaging: installer, DPDP audit log, encryption at rest, OTA adapter update.**
 
 ## Quick start
 
 ```bash
-make ci        # lint + validate + smoke tests + repo status
-make privacy   # network egress test: asserts no unexpected calls during inference
-make lint      # ruff + basic formatting checks
-make validate  # schema checks for tokenizer, SFT dataset, and manifests
-make smoke     # non-GPU dry runs of posttrain, quantize, and benchmark
-make status    # print which artifacts exist and what remains dry-run
+make ci        # lint + validate + smoke + eval + status
+make privacy   # network egress test
 ```
 
-## Tokenizer benchmark results
+## Layer map
 
-The tokenizer work is in `sia-lab/pretrain/tokenizer/`. See `BENCHMARK_RESULTS.md` for the full fertility table.
-
-Quick summary (tokens per word, lower is better):
-
-| language | SIA | LFM2.5 | Western baseline (Llama) |
-|----------|-----|--------|--------------------------|
-| hindi | 4.95 | 6.63 | mock |
-| bhojpuri_bihari | 4.46 | 5.70 | mock |
-| indian_english | 3.64 | 1.35 | mock |
-| code | 4.52 | 2.42 | mock |
-
-SIA's SentencePiece tokenizer is trained on a synthetic Indic-English-code corpus and is designed to be rebuilt at pretraining / distillation time. It is not a drop-in swap for the pretrained LFM2.5 weights.
-
-## Repository structure
-
-```
-SIA/
-├── sia-lab/
-│   ├── pretrain/tokenizer/    # SIA tokenizer + Sarvam research + benchmark
-│   ├── pretrain/corpus/       # Indic training samples
-│   ├── posttrain/             # action adapter SFT (Unsloth+TRL dry-run)
-│   ├── infra/                 # quantization + benchmark stubs
-│   ├── safety/                # privacy / network-egress tests
-│   └── product/               # P0 substrate verification
-├── PROJECT/models/            # Ollama Modelfile (weights excluded from git)
-├── Makefile                   # make ci, make privacy, etc.
-├── LICENSE
-└── README.md
-```
-
-## License
-
-MIT — see `LICENSE`. Dependencies are permissive only (MIT / Apache-2.0); no AGPL code is vendored.
+| Layer | Name | Location | Status |
+|-------|------|----------|--------|
+| L0 | Substrate | `sia-lab/product/`, `PROJECT/models/Modelfile` | dry-run passing |
+| L1 | Fast path | `sia-lab/product/verify_p0.py` | scaffolded |
+| L2 | Action adapter | `sia-lab/posttrain/`, `sia-lab/posttrain/adapter/` | trained, needs merge |
+| L3 | Reasoner | `sia-lab/reasoner/` | tiny model gate passing |
+| L4 | Memory | `sia-lab/memory/` | modules + tests |
+| L5 | Swarm | planned | not started |
 
 ## GPU training command
-
-The P1 action-adapter full training is left as one documented command:
 
 ```bash
 python3 sia-lab/posttrain/sft.py --run --base unsloth/Llama-3.2-1B-Instruct
 ```
 
-This requires a CUDA GPU with `unsloth` and `trl` installed, roughly 2 hours on a single L4.
+## License
+
+MIT — see `LICENSE`. Dependencies are permissive only (MIT / Apache-2.0); no AGPL code is vendored.
