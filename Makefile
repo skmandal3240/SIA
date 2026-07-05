@@ -2,7 +2,10 @@
 
 PYTHON := python3
 
-FILES := sia-lab/posttrain/sft.py sia-lab/infra/quantize.py sia-lab/infra/benchmark.py sia-lab/safety/privacy.py
+FILES := sia-lab/posttrain/sft.py sia-lab/infra/quantize.py sia-lab/infra/benchmark.py sia-lab/safety/privacy.py \
+         sia-lab/shell/*.py
+
+SHELL_TESTS := sia-lab/shell/tests/test_shell.py
 
 ci: lint validate smoke status
 
@@ -10,6 +13,7 @@ lint:
 	@echo "==> lint: checking Python scripts"
 	$(PYTHON) -m py_compile $(FILES)
 	$(PYTHON) -m ruff check $(FILES) || echo "ruff not installed; skipping style check"
+	$(PYTHON) sia-lab/shell/tests/test_shell.py
 
 validate:
 	@echo "==> validate: dataset + manifest schemas"
