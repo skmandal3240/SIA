@@ -4,33 +4,33 @@
       "language": "hindi",
       "samples": 5,
       "sia": 4.95,
-      "LFM2.5": 6.63,
+      "LFM2.5 (MOCK)": 1.0,
       "Western baseline (Llama) (MOCK)": 1.0
     },
     {
       "language": "bhojpuri_bihari",
       "samples": 5,
       "sia": 4.46,
-      "LFM2.5": 5.7,
+      "LFM2.5 (MOCK)": 1.07,
       "Western baseline (Llama) (MOCK)": 1.07
     },
     {
       "language": "indian_english",
       "samples": 5,
       "sia": 3.64,
-      "LFM2.5": 1.35,
+      "LFM2.5 (MOCK)": 1.22,
       "Western baseline (Llama) (MOCK)": 1.22
     },
     {
       "language": "code",
       "samples": 5,
       "sia": 4.52,
-      "LFM2.5": 2.42,
+      "LFM2.5 (MOCK)": 2.24,
       "Western baseline (Llama) (MOCK)": 2.24
     }
   ],
   "baselines": [
-    "LFM2.5",
+    "LFM2.5 (MOCK)",
     "Western baseline (Llama) (MOCK)"
   ]
 }

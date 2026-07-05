@@ -16,3 +16,6 @@ sia-lab/posttrain/outputs/
 *.bin
 *.safetensors
 models/
+.venv/
+.worktrees/
+sia-lab/eval/outputs/
