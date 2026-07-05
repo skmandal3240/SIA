@@ -1,4 +1,4 @@
-FROM ./LFM2.5-8B-A1B.gguf
+FROM ./LFM2.5-8B-A1B-Q4_K_M.gguf
 
 TEMPLATE """{{ if .System }}<|system|>
 {{ .System }}</s>{{ end }}{{ if .Prompt }}<|user|>

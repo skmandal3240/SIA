@@ -6,7 +6,7 @@ SIA is an edge-first AI companion that runs locally on phones, laptops, mini-PCs
 
 | Phase | Goal | Status | Evidence |
 |-------|------|--------|----------|
-| **P0 — Substrate** | LFM2.5 runs on Ollama + browser ONNX; 125K context proven | 80% | Modelfile exists, P0 dry-run passes, live GGUF not yet placed |
+| **P0 — Substrate** | LFM2.5 runs on Ollama + browser ONNX; 125K context proven | ✅ done | GGUF downloaded, `sia-p0` Ollama model created, text + tool inference verified |
 | **P1 — Action adapter** | Device-actions LoRA with 95% held-out tool-call accuracy | 90% | 200-example dataset, Unsloth SFT pipeline fixed, LoRA trained and downloaded |
 | **P2 — Shell** | See screen → reason → point/act + speak, shared dispatcher | 70% | Linux shell stubs, dispatcher, tag parser, tests passing; real macOS capture/audio pending |
 | **P3 — Deep core** | RDT-MoE+MLA+ACT reasoner beats fast path on multi-hop | 60% | Tiny from-scratch model overfits on CPU; up-cycle from LFM2.5 not done |
@@ -18,13 +18,12 @@ SIA is an edge-first AI companion that runs locally on phones, laptops, mini-PCs
 
 ## What V1 still needs
 
-1. **Real LFM2.5 GGUF in `PROJECT/models/` and verified Ollama run.**
-2. **P1 adapter evaluated on held-out tool calls and merged into a servable GGUF.**
-3. **macOS shell with real screen capture, STT, TTS, and OS permissions.**
-4. **Deep core up-cycled from LFM2.5 and proven to beat fast path on multi-hop.**
-5. **Memory stores wired to the reasoner and shell.**
-6. **Swarm demo with measured distillation lift.**
-7. **Packaging: installer, DPDP audit log, encryption at rest, OTA adapter update.**
+1. **P1 adapter evaluated on held-out tool calls and merged into a servable GGUF.**
+2. **macOS shell with real screen capture, STT, TTS, and OS permissions.**
+3. **Deep core up-cycled from LFM2.5 and proven to beat fast path on multi-hop.**
+4. **Memory stores wired to the reasoner and shell.**
+5. **Swarm demo with measured distillation lift.**
+6. **Packaging: installer, DPDP audit log, encryption at rest, OTA adapter update.**
 
 ## Quick start
 
@@ -37,7 +36,7 @@ make privacy   # network egress test
 
 | Layer | Name | Location | Status |
 |-------|------|----------|--------|
-| L0 | Substrate | `sia-lab/product/`, `PROJECT/models/Modelfile` | dry-run passing |
+| L0 | Substrate | `sia-lab/product/`, `PROJECT/models/Modelfile` | ✅ verified |
 | L1 | Fast path | `sia-lab/product/verify_p0.py` | scaffolded |
 | L2 | Action adapter | `sia-lab/posttrain/`, `sia-lab/posttrain/adapter/` | trained, needs merge |
 | L3 | Reasoner | `sia-lab/reasoner/` | tiny model gate passing |
