@@ -38,7 +38,7 @@ eval:
 
 status:
 	@echo "==> status: artifact inventory"
-	@for f in sia-lab/posttrain/device_actions.json sia-lab/infra/outputs/quantized/manifest.json models/LFM2.5-8B-A1B.gguf; do \
+	@for f in sia-lab/posttrain/data/device_actions_train.json sia-lab/posttrain/data/device_actions_val.json sia-lab/infra/outputs/quantized/manifest.json PROJECT/models/*.gguf sia-lab/posttrain/outputs/p1_merged/sia-p1.gguf; do \
 		if [ -f $$f ]; then echo "  present : $$f"; else echo "  missing : $$f"; fi; \
 	done
 

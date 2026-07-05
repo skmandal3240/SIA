@@ -3,15 +3,15 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are SIA, a private on-device AI companion. Use tools when needed. Available: set_alarm, send_message, open_maps."
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
       },
       {
         "role": "user",
-        "content": "Wake me up at 6:30 AM tomorrow."
+        "content": "Message Rahul: I will be there in 10 minutes."
       },
       {
         "role": "assistant",
-        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\":\"06:30\",\"repeat\":\"daily\"}<|sia_endcall|>"
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Rahul\", \"body\": \"Pahunch gaya\"}<|sia_endcall|>"
       }
     ]
   },
@@ -19,7 +19,791 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are SIA. Use tools when needed. Available: send_message."
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Navigate to Bihta."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Bihta\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Text Boss that I am running late."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Boss\", \"body\": \"Running late\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Text Sneha that I am running late."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Sneha\", \"body\": \"I will call you back\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Kankarbagh le chalo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Kankarbagh\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Boring Road ka rasta dikhao."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Boring Road\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Alarm lagao 8:45 AM ka."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"8:45 AM\", \"repeat\": \"once\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Add doctor appointment to my calendar at 12:30 PM."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"doctor appointment\", \"time\": \"12:30 PM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Text Priya that I am running late."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Priya\", \"body\": \"Meeting me hoon\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Mummy ko call karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Mummy\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Mujhe 11:30 PM uthana hai."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"11:30 PM\", \"repeat\": \"daily\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Bhaiya ko message bhejo: main pahunch raha hoon."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Bhaiya\", \"body\": \"Pahunch gaya\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Navigate to Kankarbagh."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Kankarbagh\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Wake me up at 12:30 PM tomorrow."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"12:30 PM\", \"repeat\": \"once\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Navigate to Rajendra Nagar."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Rajendra Nagar\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Settings chalu karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Settings\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Amit ko call karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Amit\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Sneha ko call karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Sneha\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Message Amit: I will be there in 10 minutes."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Amit\", \"body\": \"Ghar ja raha hoon\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "mobile_data band karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>toggle_setting<|sia_call|>{\"setting\": \"mobile_data\", \"state\": \"off\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Kankarbagh ka rasta dikhao."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Kankarbagh\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Alarm lagao 12:30 PM ka."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"12:30 PM\", \"repeat\": \"daily\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Open Settings."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Settings\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Gandhi Maidan ka rasta dikhao."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Gandhi Maidan\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Kankarbagh le chalo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Kankarbagh\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Launch Music."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Music\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Kal 12:30 PM doctor appointment add karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"doctor appointment\", \"time\": \"12:30 PM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Kal 10:00 AM family dinner add karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"family dinner\", \"time\": \"10:00 AM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Launch Calendar."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Calendar\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Turn hotspot on."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>toggle_setting<|sia_call|>{\"setting\": \"hotspot\", \"state\": \"off\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Set an alarm for 7:00 AM."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"7:00 AM\", \"repeat\": \"daily\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Messages chalu karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Messages\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Music kholo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Music\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Alarm lagao 7:00 AM ka."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"7:00 AM\", \"repeat\": \"once\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Message Papa: I will be there in 10 minutes."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Papa\", \"body\": \"Meeting me hoon\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Screen brightness 20% karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"20%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Kal 8:45 AM family dinner add karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"family dinner\", \"time\": \"8:45 AM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Message Papa: I will be there in 10 minutes."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Papa\", \"body\": \"Ghar ja raha hoon\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Turn airplane_mode on."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>toggle_setting<|sia_call|>{\"setting\": \"airplane_mode\", \"state\": \"on\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Call Didi."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Didi\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Message Mummy: I will be there in 10 minutes."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Mummy\", \"body\": \"Pahunch gaya\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Wake me up at 12:30 PM tomorrow."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"12:30 PM\", \"repeat\": \"daily\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Screen brightness 20% karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"20%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Switch off bluetooth."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>toggle_setting<|sia_call|>{\"setting\": \"bluetooth\", \"state\": \"off\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Schedule family dinner at 10:00 AM tomorrow."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"family dinner\", \"time\": \"10:00 AM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Kankarbagh ka rasta dikhao."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Kankarbagh\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Calendar chalu karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Calendar\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Set brightness to 20%."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"20%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Patna Junction ka rasta dikhao."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Patna Junction\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Wake me up at 12:30 PM tomorrow."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"12:30 PM\", \"repeat\": \"daily\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
       },
       {
         "role": "user",
@@ -27,7 +811,7 @@
       },
       {
         "role": "assistant",
-        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\":\"Rahul\",\"body\":\"Running late\"}<|sia_endcall|>"
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Rahul\", \"body\": \"I will call you back\"}<|sia_endcall|>"
       }
     ]
   },
@@ -35,15 +819,2383 @@
     "messages": [
       {
         "role": "system",
-        "content": "You are SIA. On-screen actions share the tool dispatcher."
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
       },
       {
         "role": "user",
-        "content": "Open the alarm app on the screen."
+        "content": "Set an alarm for 9:15 PM."
       },
       {
         "role": "assistant",
-        "content": "<|sia_screen|><|sia_action|>POINT:0.12,0.34:alarm_icon:screen0<|sia_endaction|>"
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"9:15 PM\", \"repeat\": \"daily\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Kal 12:30 PM client meeting add karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"client meeting\", \"time\": \"12:30 PM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Switch off flashlight."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>toggle_setting<|sia_call|>{\"setting\": \"flashlight\", \"state\": \"off\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Set brightness to 100%."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"100%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Priya ko message bhejo: main pahunch raha hoon."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Priya\", \"body\": \"Meeting me hoon\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "WhatsApp chalu karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"WhatsApp\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Mujhe 7:00 AM uthana hai."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"7:00 AM\", \"repeat\": \"daily\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Phone Priya."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Priya\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Bihta le chalo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Bihta\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "mobile_data band karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>toggle_setting<|sia_call|>{\"setting\": \"mobile_data\", \"state\": \"on\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Set brightness to 50%."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"50%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Set brightness to 30%."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"30%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Set an alarm for 6:30 AM."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"6:30 AM\", \"repeat\": \"daily\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "mobile_data chalu karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>toggle_setting<|sia_call|>{\"setting\": \"mobile_data\", \"state\": \"off\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Rajendra Nagar le chalo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Rajendra Nagar\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Wake me up at 8:45 AM tomorrow."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"8:45 AM\", \"repeat\": \"once\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Settings chalu karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Settings\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Schedule client meeting at 11:30 PM tomorrow."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"client meeting\", \"time\": \"11:30 PM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Show me the way to Danapur."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Danapur\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Wake me up at 6:30 AM tomorrow."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"6:30 AM\", \"repeat\": \"once\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Wake me up at 11:30 PM tomorrow."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"11:30 PM\", \"repeat\": \"daily\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Text Amit that I am running late."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Amit\", \"body\": \"Running late\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Navigate to Boring Road."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Boring Road\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Navigate to Gandhi Maidan."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Gandhi Maidan\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Boss ko message bhejo: main pahunch raha hoon."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Boss\", \"body\": \"Ghar ja raha hoon\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Schedule doctor appointment at 9:15 PM tomorrow."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"doctor appointment\", \"time\": \"9:15 PM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Kal 8:45 AM client meeting add karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"client meeting\", \"time\": \"8:45 AM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Schedule client meeting at 9:15 PM tomorrow."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"client meeting\", \"time\": \"9:15 PM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Wake me up at 11:30 PM tomorrow."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"11:30 PM\", \"repeat\": \"daily\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Gandhi Maidan ka rasta dikhao."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Gandhi Maidan\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Switch off airplane_mode."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>toggle_setting<|sia_call|>{\"setting\": \"airplane_mode\", \"state\": \"on\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Phone Papa."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Papa\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Screen brightness 30% karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"30%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Kal 6:30 AM family dinner add karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"family dinner\", \"time\": \"6:30 AM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Add team call to my calendar at 8:45 AM."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"team call\", \"time\": \"8:45 AM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Message Priya: I will be there in 10 minutes."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Priya\", \"body\": \"Ghar ja raha hoon\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Kal 12:30 PM grocery shopping add karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"grocery shopping\", \"time\": \"12:30 PM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Sneha ko call karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Sneha\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Set brightness to 80%."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"80%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Text Boss that I am running late."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Boss\", \"body\": \"Pahunch gaya\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Alarm lagao 9:15 PM ka."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"9:15 PM\", \"repeat\": \"daily\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "flashlight chalu karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>toggle_setting<|sia_call|>{\"setting\": \"flashlight\", \"state\": \"off\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Set an alarm for 7:00 AM."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"7:00 AM\", \"repeat\": \"daily\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Mujhe 9:15 PM uthana hai."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"9:15 PM\", \"repeat\": \"daily\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "wifi band karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>toggle_setting<|sia_call|>{\"setting\": \"wifi\", \"state\": \"off\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Set an alarm for 9:15 PM."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"9:15 PM\", \"repeat\": \"daily\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Mummy ko WhatsApp karo: ghar se nikla."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Mummy\", \"body\": \"Ghar ja raha hoon\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Switch off bluetooth."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>toggle_setting<|sia_call|>{\"setting\": \"bluetooth\", \"state\": \"on\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Launch Phone."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Phone\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Phone Boss."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Boss\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Add doctor appointment to my calendar at 7:00 AM."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"doctor appointment\", \"time\": \"7:00 AM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Set an alarm for 11:30 PM."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"11:30 PM\", \"repeat\": \"daily\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Brightness 80% karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"80%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Navigate to Bihta."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Bihta\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Boring Road ka rasta dikhao."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Boring Road\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Add team call to my calendar at 5:00 PM."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"team call\", \"time\": \"5:00 PM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Open Calendar."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Calendar\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Papa ko message bhejo: main pahunch raha hoon."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Papa\", \"body\": \"I will call you back\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Alarm lagao 7:00 AM ka."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"7:00 AM\", \"repeat\": \"once\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Call Boss."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Boss\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Camera kholo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Camera\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Set an alarm for 10:00 AM."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"10:00 AM\", \"repeat\": \"daily\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Call Boss."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Boss\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Call Mummy."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Mummy\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Kal 5:00 PM family dinner add karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"family dinner\", \"time\": \"5:00 PM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Calendar chalu karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Calendar\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Schedule family dinner at 8:45 AM tomorrow."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"family dinner\", \"time\": \"8:45 AM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Launch WhatsApp."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"WhatsApp\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Add client meeting to my calendar at 6:30 AM."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"client meeting\", \"time\": \"6:30 AM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Kal 10:00 AM doctor appointment add karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"doctor appointment\", \"time\": \"10:00 AM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Didi se baat karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Didi\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Set brightness to 10%."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"10%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Set brightness to 10%."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"10%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Papa ko message bhejo: main pahunch raha hoon."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Papa\", \"body\": \"Ghar ja raha hoon\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Message Sneha: I will be there in 10 minutes."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Sneha\", \"body\": \"Pahunch gaya\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Navigate to Bihta."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Bihta\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Wake me up at 12:30 PM tomorrow."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"12:30 PM\", \"repeat\": \"once\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Screen brightness 100% karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"100%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Kankarbagh le chalo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Kankarbagh\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Set brightness to 100%."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"100%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Turn flashlight on."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>toggle_setting<|sia_call|>{\"setting\": \"flashlight\", \"state\": \"on\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Launch Camera."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Camera\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Screen brightness 20% karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"20%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Navigate to Rajendra Nagar."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Rajendra Nagar\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Brightness 50% karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"50%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Didi se baat karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Didi\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Screen brightness 50% karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"50%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Brightness 100% karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"100%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Rajendra Nagar ka rasta dikhao."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Rajendra Nagar\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Set brightness to 10%."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"10%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Kal 7:00 AM client meeting add karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"client meeting\", \"time\": \"7:00 AM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Add doctor appointment to my calendar at 5:00 PM."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"doctor appointment\", \"time\": \"5:00 PM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Call Bhaiya."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Bhaiya\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "bluetooth chalu karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>toggle_setting<|sia_call|>{\"setting\": \"bluetooth\", \"state\": \"on\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Turn flashlight on."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>toggle_setting<|sia_call|>{\"setting\": \"flashlight\", \"state\": \"on\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "WhatsApp kholo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"WhatsApp\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Set brightness to 100%."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"100%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Rajendra Nagar le chalo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Rajendra Nagar\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Phone chalu karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Phone\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Brightness 20% karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"20%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Kal 10:00 AM client meeting add karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"client meeting\", \"time\": \"10:00 AM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Show me the way to Boring Road."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Boring Road\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Schedule client meeting at 11:30 PM tomorrow."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"client meeting\", \"time\": \"11:30 PM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Calendar chalu karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Calendar\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Switch off dark_mode."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>toggle_setting<|sia_call|>{\"setting\": \"dark_mode\", \"state\": \"off\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Wake me up at 10:00 AM tomorrow."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"10:00 AM\", \"repeat\": \"daily\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Maps chalu karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Maps\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "wifi chalu karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>toggle_setting<|sia_call|>{\"setting\": \"wifi\", \"state\": \"off\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Sneha se baat karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Sneha\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Mummy se baat karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Mummy\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Schedule client meeting at 5:00 PM tomorrow."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"client meeting\", \"time\": \"5:00 PM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Screen brightness 20% karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"20%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Wake me up at 9:15 PM tomorrow."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"9:15 PM\", \"repeat\": \"daily\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Set an alarm for 6:30 AM."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"6:30 AM\", \"repeat\": \"daily\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Set an alarm for 8:45 AM."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"8:45 AM\", \"repeat\": \"daily\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Set brightness to 10%."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"10%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Boring Road ka rasta dikhao."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Boring Road\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Call Amit."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Amit\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Turn airplane_mode on."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>toggle_setting<|sia_call|>{\"setting\": \"airplane_mode\", \"state\": \"on\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Add family dinner to my calendar at 10:00 AM."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"family dinner\", \"time\": \"10:00 AM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Show me the way to Patna Junction."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Patna Junction\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Text Papa that I am running late."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Papa\", \"body\": \"Ghar ja raha hoon\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Alarm lagao 9:15 PM ka."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\": \"9:15 PM\", \"repeat\": \"once\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Text Bhaiya that I am running late."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Bhaiya\", \"body\": \"Pahunch gaya\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Open Music."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Music\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Calendar chalu karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Calendar\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "mobile_data band karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>toggle_setting<|sia_call|>{\"setting\": \"mobile_data\", \"state\": \"on\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Brightness 100% karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"100%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Schedule grocery shopping at 12:30 PM tomorrow."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"grocery shopping\", \"time\": \"12:30 PM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Add client meeting to my calendar at 12:30 PM."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"client meeting\", \"time\": \"12:30 PM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Open Calendar."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Calendar\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Set brightness to 80%."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"80%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Brightness 50% karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"50%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Kal 5:00 PM grocery shopping add karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"grocery shopping\", \"time\": \"5:00 PM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Kal 6:30 AM family dinner add karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"family dinner\", \"time\": \"6:30 AM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Show me the way to Patna Junction."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Patna Junction\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Launch Music."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_app<|sia_call|>{\"app\": \"Music\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Screen brightness 10% karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"10%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Set brightness to 100%."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"100%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Papa ko WhatsApp karo: ghar se nikla."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\": \"Papa\", \"body\": \"I will call you back\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Danapur ka rasta dikhao."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Danapur\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Screen brightness 30% karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_brightness<|sia_call|>{\"level\": \"30%\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Boss ko call karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Boss\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Didi ko call karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>make_call<|sia_call|>{\"contact\": \"Didi\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Schedule grocery shopping at 12:30 PM tomorrow."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"grocery shopping\", \"time\": \"12:30 PM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Navigate to Danapur."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Danapur\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "bluetooth chalu karo."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>toggle_setting<|sia_call|>{\"setting\": \"bluetooth\", \"state\": \"on\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Schedule family dinner at 5:00 PM tomorrow."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>create_event<|sia_call|>{\"title\": \"family dinner\", \"time\": \"5:00 PM\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion for Indian users. Use tools when needed. Available: set_alarm, send_message, toggle_setting, open_maps, create_event, make_call, open_app, set_brightness."
+      },
+      {
+        "role": "user",
+        "content": "Show me the way to Danapur."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>open_maps<|sia_call|>{\"destination\": \"Danapur\"}<|sia_endcall|>"
       }
     ]
   }

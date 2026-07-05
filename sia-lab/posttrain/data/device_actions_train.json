@@ -1,0 +1,50 @@
+[
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA, a private on-device AI companion. Use tools when needed. Available: set_alarm, send_message, open_maps."
+      },
+      {
+        "role": "user",
+        "content": "Wake me up at 6:30 AM tomorrow."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>set_alarm<|sia_call|>{\"time\":\"06:30\",\"repeat\":\"daily\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA. Use tools when needed. Available: send_message."
+      },
+      {
+        "role": "user",
+        "content": "Text Rahul that I am running late."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_tool|>send_message<|sia_call|>{\"contact\":\"Rahul\",\"body\":\"Running late\"}<|sia_endcall|>"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "system",
+        "content": "You are SIA. On-screen actions share the tool dispatcher."
+      },
+      {
+        "role": "user",
+        "content": "Open the alarm app on the screen."
+      },
+      {
+        "role": "assistant",
+        "content": "<|sia_screen|><|sia_action|>POINT:0.12,0.34:alarm_icon:screen0<|sia_endaction|>"
+      }
+    ]
+  }
+]

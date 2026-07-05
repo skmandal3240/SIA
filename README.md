@@ -7,7 +7,7 @@ SIA is an edge-first AI companion that runs locally on phones, laptops, mini-PCs
 | Phase | Goal | Status | Evidence |
 |-------|------|--------|----------|
 | **P0 — Substrate** | LFM2.5 runs on Ollama + browser ONNX; 125K context proven | ✅ done | GGUF downloaded, `sia-p0` Ollama model created, text + tool inference verified |
-| **P1 — Action adapter** | Device-actions LoRA with 95% held-out tool-call accuracy | 90% | 200-example dataset, Unsloth SFT pipeline fixed, LoRA trained and downloaded |
+| **P1 — Action adapter** | Device-actions LoRA with 95% tool-call accuracy | 50% | LoRA trained, merged into GGUF, Ollama `sia-p1` created; measured accuracy 0% on smoke eval, needs retraining with stronger data/prompt |
 | **P2 — Shell** | See screen → reason → point/act + speak, shared dispatcher | 70% | Linux shell stubs, dispatcher, tag parser, tests passing; real macOS capture/audio pending |
 | **P3 — Deep core** | RDT-MoE+MLA+ACT reasoner beats fast path on multi-hop | 60% | Tiny from-scratch model overfits on CPU; up-cycle from LFM2.5 not done |
 | **P4 — Memory + eval** | TokenCake + episodic + GraphRAG + governor tests | 60% | All modules and tests in repo, not yet wired to live reasoner |
@@ -38,7 +38,7 @@ make privacy   # network egress test
 |-------|------|----------|--------|
 | L0 | Substrate | `sia-lab/product/`, `PROJECT/models/Modelfile` | ✅ verified |
 | L1 | Fast path | `sia-lab/product/verify_p0.py` | scaffolded |
-| L2 | Action adapter | `sia-lab/posttrain/`, `sia-lab/posttrain/adapter/` | trained, needs merge |
+| L2 | Action adapter | `sia-lab/posttrain/`, `sia-lab/posttrain/adapter/` | trained + merged, needs retraining for accuracy |
 | L3 | Reasoner | `sia-lab/reasoner/` | tiny model gate passing |
 | L4 | Memory | `sia-lab/memory/` | modules + tests |
 | L5 | Swarm | planned | not started |

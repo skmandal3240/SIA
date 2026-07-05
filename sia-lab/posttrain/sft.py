@@ -213,7 +213,7 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="SIA action-adapter SFT")
     parser.add_argument("--run", action="store_true", help="run real training (needs GPU)")
     parser.add_argument("--base", default="unsloth/Llama-3.2-1B-Instruct")
-    parser.add_argument("--dataset", default="sia-lab/posttrain/device_actions.json")
+    parser.add_argument("--dataset", default="sia-lab/posttrain/data/device_actions_train.json")
     parser.add_argument("--output-dir", default="sia-lab/posttrain/outputs/device_actions_lora")
     parser.add_argument("--max-seq-length", type=int, default=2048)
     parser.add_argument("--batch-size", type=int, default=2)
