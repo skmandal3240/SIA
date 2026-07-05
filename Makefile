@@ -2,7 +2,7 @@
 
 PYTHON := python3
 
-FILES := sia-lab/posttrain/sft.py sia-lab/infra/quantize.py sia-lab/infra/benchmark.py sia-lab/safety/privacy.py
+FILES := sia-lab/posttrain/sft.py sia-lab/infra/quantize.py sia-lab/infra/benchmark.py sia-lab/safety/privacy.py sia-lab/reasoner/reasoner.py sia-lab/reasoner/tiny_overfit.py
 
 ci: lint validate smoke status
 
@@ -22,6 +22,8 @@ smoke:
 	$(PYTHON) sia-lab/posttrain/sft.py
 	$(PYTHON) sia-lab/infra/quantize.py --bits 8
 	$(PYTHON) sia-lab/infra/benchmark.py
+	$(PYTHON) sia-lab/reasoner/reasoner.py
+	$(PYTHON) sia-lab/reasoner/tiny_overfit.py
 
 status:
 	@echo "==> status: artifact inventory"
