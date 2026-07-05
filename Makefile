@@ -1,14 +1,12 @@
-.PHONY: ci lint validate smoke status privacy
+.PHONY: ci lint validate smoke eval status privacy
 
 PYTHON := python3
 
-FILES := sia-lab/posttrain/sft.py sia-lab/infra/quantize.py sia-lab/infra/benchmark.py \
-         sia-lab/safety/privacy.py sia-lab/reasoner/reasoner.py sia-lab/reasoner/tiny_overfit.py \
-         sia-lab/shell/*.py
+FILES := $(shell find sia-lab -name '*.py' -type f)
 
 SHELL_TESTS := sia-lab/shell/tests/test_shell.py
 
-ci: lint validate smoke status
+ci: lint validate smoke eval status
 
 lint:
 	@echo "==> lint: checking Python scripts"
@@ -29,6 +27,14 @@ smoke:
 	$(PYTHON) sia-lab/infra/benchmark.py
 	$(PYTHON) sia-lab/reasoner/reasoner.py
 	$(PYTHON) sia-lab/reasoner/tiny_overfit.py
+
+eval:
+	@echo "==> eval: memory + benchmark harness"
+	$(PYTHON) sia-lab/memory/tokencake.py
+	$(PYTHON) sia-lab/memory/episodic.py
+	$(PYTHON) sia-lab/memory/graphrag.py
+	$(PYTHON) sia-lab/eval/multi_hop.py
+	$(PYTHON) sia-lab/eval/governor.py
 
 status:
 	@echo "==> status: artifact inventory"
