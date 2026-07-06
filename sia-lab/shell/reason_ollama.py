@@ -20,6 +20,7 @@ def _ollama_available() -> bool:
 def reason_with_ollama(
     screenshot: dict,
     transcript: str,
+    context: str = "",
     model_tag: str = "sia-p0",
     prompt_template: str | None = None,
 ) -> tuple[str, list[dict]]:
@@ -39,11 +40,12 @@ def reason_with_ollama(
     tpl = prompt_template or (
         "You are SIA, a private on-device AI companion.\n"
         "Screen size: {width}x{height}\n"
+        "Context: {context}\n"
         "User said: {transcript}\n"
         "Reply concisely. If you need to point at the screen, use [POINT:x,y:label:screen0]. "
         "If you need to call a device tool, include JSON: {{\"tool\": \"...\", \"arguments\": {{...}}}}."
     )
-    prompt = tpl.format(width=screenshot["width"], height=screenshot["height"], transcript=transcript)
+    prompt = tpl.format(width=screenshot["width"], height=screenshot["height"], transcript=transcript, context=context)
 
     try:
         proc = subprocess.run(
@@ -79,7 +81,7 @@ def main(argv: list[str] = sys.argv) -> int:
     from .capture import CaptureStub
     screenshot = CaptureStub().grab()
     transcript = " ".join(argv[1:]) or "hello sia"
-    response, tools = reason_with_ollama(screenshot, transcript)
+    response, tools = reason_with_ollama(screenshot, transcript, context="self-check")
     print("Response:", response)
     print("Tools:", tools)
     return 0 if response else 1

@@ -48,7 +48,7 @@ def _schema_ok(sample: dict) -> tuple[bool, str]:
     return True, ""
 
 
-def make_dry_dataset(path: Path | None = None) -> list[dict]:
+def _make_dry_dataset(path: Path | None = None) -> list[dict]:
     """Return a minimal valid tool-call dataset in chat format."""
     samples = [
         {
@@ -103,7 +103,7 @@ def make_dry_dataset(path: Path | None = None) -> list[dict]:
 
 def smoke_dataset(path: Path | None = None) -> int:
     """Validate dataset schema and that all SIA tokens appear at least once."""
-    samples = make_dry_dataset(path)
+    samples = _make_dry_dataset(path)
     failures = 0
     for i, sample in enumerate(samples):
         ok, reason = _schema_ok(sample)
