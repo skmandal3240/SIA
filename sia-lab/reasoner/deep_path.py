@@ -16,14 +16,26 @@ import torch
 
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT.parent / "memory"))
 
 from reasoner import SIRConfig, SIRReasoner
+from memory import GraphRAGStub, EpisodicStore
 
 
 class DeepPath:
-    """Answer a question over a context using the recurrent-depth core."""
+    """Answer a question over a context using the recurrent-depth core.
 
-    def __init__(self, cfg: SIRConfig | None = None, checkpoint_path: str | None = None) -> None:
+    Optionally retrieves semantic graph triples and recent episodes related
+    to the question and injects them into the prompt.
+    """
+
+    def __init__(
+        self,
+        cfg: SIRConfig | None = None,
+        checkpoint_path: str | None = None,
+        graph: GraphRAGStub | None = None,
+        episodes: EpisodicStore | None = None,
+    ) -> None:
         self.cfg = cfg or SIRConfig(
             vocab_size=128,
             dim=128,
@@ -36,6 +48,8 @@ class DeepPath:
             act_max_steps=4,
         )
         self.model = SIRReasoner(self.cfg)
+        self.graph = graph or GraphRAGStub()
+        self.episodes = episodes or EpisodicStore()
         if checkpoint_path:
             # ponytail: placeholder for real LFM2.5 up-cycled checkpoint.
             pass
@@ -69,7 +83,22 @@ class DeepPath:
         """Generate an answer conditioned on context + question."""
         self._ensure_vocab(" ".join(context) + " " + question)
         assert self._vocab is not None and self._inv is not None
-        prompt = "Context: " + " ".join(context) + "\nQuestion: " + question + "\nAnswer: "
+
+        # P4 memory: inject graph triples and recent episodes related to the question.
+        memory_context = ""
+        for entity in question.split():
+            triples = self.graph.query(entity)
+            if triples:
+                memory_context += "; ".join(f"{t['subject']} {t['predicate']} {t['object']}" for t in triples) + ". "
+        # ponytail: recall last 3 episodes as a cheap stand-in for semantic search.
+        recent = sorted(self.episodes._episodes.values(), key=lambda e: e.created_at, reverse=True)[:3]
+        if recent:
+            memory_context += "Recent: " + " | ".join(ep.content for ep in recent) + ". "
+
+        prompt = "Context: " + " ".join(context) + "\n"
+        if memory_context:
+            prompt += "Memory: " + memory_context + "\n"
+        prompt += "Question: " + question + "\nAnswer: "
         idx = self._encode(prompt)
 
         # Governor budget: reduce depth when hot/low-battery.

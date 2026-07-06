@@ -1,4 +1,4 @@
-.PHONY: ci lint validate smoke eval status privacy shell-p2 reasoner-p3
+.PHONY: ci lint validate smoke eval status privacy shell-p2 reasoner-p3 v1-status p4-memory
 
 PYTHON := python3
 
@@ -39,6 +39,24 @@ reasoner-p3:
 	$(PYTHON) sia-lab/reasoner/tiny_overfit.py
 	$(PYTHON) sia-lab/reasoner/p3_eval.py
 
+p4-memory:
+	@echo "==> P4 memory: smoke test"
+	$(PYTHON) sia-lab/memory/tokencake.py
+	$(PYTHON) sia-lab/memory/episodic.py
+	$(PYTHON) sia-lab/memory/graphrag.py
+	$(PYTHON) sia-lab/shell/smoke_p4.py
+
+v1-status:
+	@echo "==> V1 remaining tasks status"
+	$(PYTHON) sia-lab/posttrain/generate_dataset.py --n 100
+	$(PYTHON) sia-lab/memory/tokencake.py
+	$(PYTHON) sia-lab/memory/episodic.py
+	$(PYTHON) sia-lab/memory/graphrag.py
+	$(PYTHON) sia-lab/swarm/swarm.py
+	$(PYTHON) sia-lab/safety/audit.py
+	$(PYTHON) sia-lab/infra/ota.py
+	$(PYTHON) sia-lab/safety/privacy.py
+
 eval:
 	@echo "==> eval: memory + benchmark harness"
 	$(PYTHON) sia-lab/memory/tokencake.py
@@ -46,13 +64,3 @@ eval:
 	$(PYTHON) sia-lab/memory/graphrag.py
 	$(PYTHON) sia-lab/eval/multi_hop.py
 	$(PYTHON) sia-lab/eval/governor.py
-
-status:
-	@echo "==> status: artifact inventory"
-	@for f in sia-lab/posttrain/data/device_actions_train.json sia-lab/posttrain/data/device_actions_val.json sia-lab/infra/outputs/quantized/manifest.json PROJECT/models/*.gguf sia-lab/posttrain/outputs/p1_merged/sia-p1.gguf; do \
-		if [ -f $$f ]; then echo "  present : $$f"; else echo "  missing : $$f"; fi; \
-	done
-
-privacy:
-	@echo "==> privacy: network egress test"
-	$(PYTHON) sia-lab/safety/privacy.py

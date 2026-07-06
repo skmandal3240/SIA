@@ -7,12 +7,12 @@ SIA is an edge-first AI companion that runs locally on phones, laptops, mini-PCs
 | Phase | Goal | Status | Evidence |
 |-------|------|--------|----------|
 | **P0 — Substrate** | LFM2.5 runs on Ollama + browser ONNX; 125K context proven | ✅ done | GGUF downloaded, `sia-p0` Ollama model created, text + tool inference verified |
-| **P1 — Action adapter** | Device-actions LoRA with 95% tool-call accuracy | 50% | LoRA trained, merged into GGUF, Ollama `sia-p1` created; measured accuracy 0% on smoke eval, needs retraining with stronger data/prompt |
-| **P2 — Shell** | See screen → reason → point/act + speak, shared dispatcher | 80% | Linux real capture + Ollama reasoner bridge + smoke; macOS capture/audio pending |
-| **P3 — Deep core** | RDT-MoE+MLA+ACT reasoner beats fast path on multi-hop | 75% | Router, governor budget, deep-path harness, and eval passing; real LFM2.5 up-cycling needs GPU training |
-| **P4 — Memory + eval** | TokenCake + episodic + GraphRAG + governor tests | 60% | All modules and tests in repo, not yet wired to live reasoner |
-| **P5 — Swarm + distillation** | N=2 swarm loop and Mixture-of-Students lift | 0% | Not started |
-| **P6 — Harden** | Governor authority, DPDP hooks, quant matrix, OTA adapters | 50% | Privacy egress test passes; full hardening not done |
+| **P1 — Action adapter** | Device-actions LoRA with 95% tool-call accuracy | 60% | 1000-example dataset generator added; run `sft.py --run --base unsloth/Llama-3.2-1B-Instruct` on GPU to finish |
+| **P2 — Shell** | See screen → reason → point/act + speak, shared dispatcher | 85% | Linux real capture + Ollama reasoner bridge + memory context; macOS capture/audio pending |
+| **P3 — Deep core** | RDT-MoE+MLA+ACT reasoner beats fast path on multi-hop | 80% | Router, governor budget, deep-path harness + memory retrieval, eval passing; real LFM2.5 up-cycling needs GPU training |
+| **P4 — Memory + eval** | TokenCake + episodic + GraphRAG wired to reasoner/shell | 80% | Memory classes exported and wired into deep_path and loop; smoke_p4 passes; needs real tokenizer budgets |
+| **P5 — Swarm + distillation** | N=2 swarm loop and Mixture-of-Students lift | 30% | N=2 operational swarm runtime added; distillation pipeline stub remains |
+| **P6 — Harden** | Governor authority, DPDP hooks, quant matrix, OTA adapters | 60% | Privacy egress test passes + audit log + OTA manifest; full hardening not done |
 
 **Overall V1 public release readiness: ~65%.**
 

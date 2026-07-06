@@ -108,7 +108,7 @@ def test_shell_loop_default_turn():
 
 def test_shell_loop_custom_reason():
     loop = ShellLoop(
-        reason=lambda shot, text: (f"ok {text} [CLICK:5,6]", []),
+        reason=lambda shot, text, ctx: (f"ok {text} {ctx} [CLICK:5,6]", []),
         stt=StreamingSTTStub(["namaste"]),
     )
     turn = loop.run_once([b"audio"])

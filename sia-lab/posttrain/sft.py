@@ -92,10 +92,13 @@ def make_dry_dataset(path: Path | None = None) -> list[dict]:
             ]
         },
     ]
-    if path:
-        with open(path, "w", encoding="utf-8") as f:
-            json.dump(samples, f, indent=2, ensure_ascii=False)
-    return samples
+# ponytail: if a real dataset exists, use it; otherwise create the dry one.
+    path = path or Path("sia-lab/posttrain/data/device_actions_train.json")
+    if path.exists():
+        with open(path, encoding="utf-8") as f:
+            samples = json.load(f)
+        return samples
+    return make_dry_dataset(path)
 
 
 def smoke_dataset(path: Path | None = None) -> int:

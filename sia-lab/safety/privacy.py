@@ -49,9 +49,14 @@ def privacy_test() -> int:
     guard = EgressGuard()
     guard.install()
     try:
+        sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+        from safety.audit import AuditLog
+        log = AuditLog("/tmp/sia_privacy_audit.jsonl")
+        log.record_egress("api.example.com", 443, allowed=False)
         # Simulate an on-device inference step that must not phone home.
         Path("/tmp/sia_privacy_test.txt").write_text("inference output")
         _ = Path("/tmp/sia_privacy_test.txt").read_text()
+        log.record_action("inference", classification="operational")
     finally:
         guard.uninstall()
 
