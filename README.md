@@ -14,7 +14,7 @@ SIA is an edge-first AI companion that runs locally on phones, laptops, mini-PCs
 | **P5 — Swarm + distillation** | N=2 swarm loop and Mixture-of-Students lift | 75% | N=2 swarm + MoS scaffold; `make swarm-p5` passes |
 | **P6 — Harden** | Governor authority, DPDP hooks, quant matrix, OTA adapters | 60% | Privacy egress test + audit log + OTA manifest; needs full hardening |
 
-**Overall V1 public release readiness: ~80%.**
+**Overall V1 public release readiness: blocked on P1 GPU training (core engine ready, actions not trained).**
 
 ## What V1 still needs
 
