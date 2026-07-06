@@ -30,7 +30,12 @@ _ALLOWED_KINDS = {"POINT", "CLICK", "TYPE", "SCROLL"}
 
 
 def _split_payload(parts: list[str], kind: str) -> tuple[str | None, int]:
-    """Return (label_or_text, scroll_dx, scroll_dy) and screen index."""
+    """Return (label_or_text, screen_index).
+
+    For SCROLL tags the payload keeps the ``dx,dy`` deltas as a ``scroll:dx,dy``
+    label. A trailing ``screenN`` field, if present, is stripped into the
+    returned screen index.
+    """
     screen = 0
     payload_parts = parts[2:]
     if payload_parts:

@@ -17,6 +17,7 @@ class TokenCakeSlice:
     content: str
     tokens: int = 0
     metadata: dict[str, Any] = field(default_factory=dict)
+    pinned: bool = False
 
 
 class TokenCake:
@@ -35,7 +36,6 @@ class TokenCake:
         self.budget = budget
         self.reserve = reserve
         self._slices: deque[TokenCakeSlice] = deque()
-        self._pinned: set[int] = set()
 
     def add(self, role: str, content: str, tokens: int = 0, *, pin: bool = False,
             metadata: dict[str, Any] | None = None) -> TokenCakeSlice:
@@ -44,15 +44,8 @@ class TokenCake:
             raise ValueError("tokens cannot be negative")
         if metadata is None:
             metadata = {}
-        item_id = id(content)  # stable enough for this stub
-        item_id += len(self._slices)
-        # Recalculate item_id above is not unique across deletions; keep it simple
-        # and use the position at insertion time for pinning.
-        idx = len(self._slices)
-        slice_ = TokenCakeSlice(role, content, tokens, metadata)
+        slice_ = TokenCakeSlice(role, content, tokens, metadata, pinned=pin)
         self._slices.append(slice_)
-        if pin:
-            self._pinned.add(idx)
         self._evict()
         return slice_
 
@@ -61,9 +54,10 @@ class TokenCake:
         used = sum(s.tokens for s in self._slices)
         limit = self.budget - self.reserve
         while used > limit and self._slices:
-            for i, s in enumerate(self._slices):
-                idx = i
-                if idx not in self._pinned:
+            # Pin state travels with the slice, so eviction stays correct even
+            # after earlier slices have been dropped and positions shifted.
+            for s in self._slices:
+                if not s.pinned:
                     self._slices.remove(s)
                     used -= s.tokens
                     break
@@ -91,6 +85,7 @@ class TokenCake:
                 "content": s.content,
                 "tokens": s.tokens,
                 "metadata": s.metadata,
+                "pinned": s.pinned,
             }
             for s in self._slices
         ]
@@ -98,17 +93,15 @@ class TokenCake:
     def load(self, data: Sequence[dict[str, Any]]) -> None:
         """Restore from dump output."""
         self._slices.clear()
-        self._pinned.clear()
-        for i, row in enumerate(data):
+        for row in data:
             s = TokenCakeSlice(
                 role=row["role"],
                 content=row["content"],
                 tokens=row.get("tokens", 0),
                 metadata=row.get("metadata", {}),
+                pinned=bool(row.get("pinned", False)),
             )
             self._slices.append(s)
-            if row.get("pinned"):
-                self._pinned.add(i)
         self._evict()
 
     def save(self, path: Path | str) -> None:
@@ -132,6 +125,21 @@ def demo() -> None:
     roles = [m["role"] for m in msgs]
     assert "system" in roles
     print("TokenCake demo passed:", roles, "used", cake.used_tokens)
+
+    # A pin on a non-first slice must survive eviction even after earlier
+    # slices are dropped and positions shift (regression for index-based pins).
+    cake2 = TokenCake(budget=100, reserve=10)
+    cake2.add("user", "throwaway one", tokens=30)
+    cake2.add("tool_result", "IMPORTANT fact", tokens=20, pin=True)
+    cake2.add("user", "throwaway two", tokens=40)
+    cake2.add("user", "throwaway three", tokens=40)  # forces eviction of unpinned
+    contents = [m["content"] for m in cake2.to_messages()]
+    assert "IMPORTANT fact" in contents, contents
+    # Round-trip the pin through dump/load.
+    restored = TokenCake(budget=100, reserve=10)
+    restored.load(cake2.dump())
+    assert any(s.pinned and s.content == "IMPORTANT fact" for s in restored._slices)
+    print("TokenCake pin demo passed:", contents)
 
 
 if __name__ == "__main__":

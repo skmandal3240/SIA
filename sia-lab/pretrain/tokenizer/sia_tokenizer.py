@@ -16,11 +16,20 @@ from __future__ import annotations
 import json
 import os
 import re
+import tempfile
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable, Sequence
 
 import sentencepiece as spm
+
+# Repo-relative anchors. This file lives at
+# sia-lab/pretrain/tokenizer/sia_tokenizer.py, so parents[1] is sia-lab/pretrain.
+_PRETRAIN_DIR = Path(__file__).resolve().parents[1]
+_DEFAULT_CORPUS = _PRETRAIN_DIR / "corpus" / "sample_indic.jsonl"
+# Training writes into a scratch build dir so the committed tokenizer artifacts
+# in this source tree are never clobbered.
+_DEFAULT_WORK_DIR = Path(tempfile.gettempdir()) / "sia-lab-build" / "tokenizer"
 
 
 @dataclass
@@ -213,7 +222,7 @@ def train_sentencepiece(
 
 def load_or_train(
     corpus_jsonl: str | Path | None = None,
-    work_dir: str | Path = "/tmp/sia-lab-build/sia-lab/pretrain/tokenizer",
+    work_dir: str | Path = _DEFAULT_WORK_DIR,
     vocab_size: int = 49152,
     train: bool = True,
 ) -> SIA_TOKENIZER:
@@ -229,7 +238,7 @@ def load_or_train(
 
     if corpus_jsonl is None:
         # ponytail: default to shipped sample corpus when no path given.
-        corpus_jsonl = Path("/tmp/sia-lab-build/sia-lab/pretrain/corpus/sample_indic.jsonl")
+        corpus_jsonl = _DEFAULT_CORPUS
 
     txt_file = work_dir / "train.txt"
     build_training_texts(corpus_jsonl, txt_file)

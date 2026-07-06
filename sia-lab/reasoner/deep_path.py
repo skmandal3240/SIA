@@ -16,7 +16,10 @@ import torch
 
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
-sys.path.insert(0, str(ROOT.parent / "memory"))
+# `memory` is a package under sia-lab/, so its parent (sia-lab) must be on the
+# path — not sia-lab/memory — for `from memory import ...` to resolve when this
+# module is run standalone.
+sys.path.insert(0, str(ROOT.parent))
 
 from reasoner import SIRConfig, SIRReasoner
 from memory import GraphRAGStub, EpisodicStore
@@ -108,15 +111,19 @@ class DeepPath:
             self._vocab = None  # ponytail: vocab will be rebuilt for new size if needed
             self._inv = None
 
+        input_len = idx.shape[1]
         self.model.eval()
         with torch.no_grad():
             out = self.model.generate(idx, max_new=20, temperature=0.8)
         # Rebuild vocab for decode in case model was recreated.
         self._ensure_vocab(" ".join(context) + " " + question)
         assert self._inv is not None
-        answer = self._decode(out)[len(prompt):]
-        # Stop at newline or eos.
-        answer = answer.split("\n")[0].split("<eos>")[0].strip()
+        # Decode only the newly generated tokens; the input was padded to a
+        # fixed length, so slicing the decoded string by prompt char-count is
+        # wrong (pad/special ids decode to multi-char names).
+        answer = self._decode(out[:, input_len:])
+        # Stop at newline, eos, or padding.
+        answer = answer.split("\n")[0].split("<eos>")[0].split("<pad>")[0].strip()
         return answer or "unknown"
 
 
