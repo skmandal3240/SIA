@@ -39,6 +39,12 @@ reasoner-p3:
 	$(PYTHON) sia-lab/reasoner/tiny_overfit.py
 	$(PYTHON) sia-lab/reasoner/p3_eval.py
 
+swarm-p5:
+	@echo "==> P5 swarm: operational + distillation smoke"
+	$(PYTHON) sia-lab/swarm/swarm.py
+	$(PYTHON) sia-lab/swarm/distill.py
+	$(PYTHON) sia-lab/swarm/p5_eval.py
+
 p4-memory:
 	@echo "==> P4 memory: smoke test"
 	$(PYTHON) sia-lab/memory/tokencake.py
