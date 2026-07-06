@@ -63,8 +63,13 @@ def parse_action_tags(text: str) -> list[ActionTag]:
         if len(parts) >= 2 and parts[0] in _ALLOWED_KINDS:
             try:
                 kind = parts[0]
-                x, y = parts[1].split(",")
-                payload, screen = _split_payload(parts, kind)
+                if "," in parts[1]:
+                    x, y = parts[1].split(",")
+                    payload, screen = _split_payload(parts, kind)
+                else:
+                    # ponytail: tolerate [POINT:x:y:label] from imprecise small models.
+                    x, y = parts[1], parts[2]
+                    payload, screen = _split_payload([kind, f"{x},{y}"] + parts[3:], kind)
                 out.append(
                     ActionTag(
                         kind=kind,
@@ -75,7 +80,7 @@ def parse_action_tags(text: str) -> list[ActionTag]:
                         raw=raw,
                     )
                 )
-            except ValueError:
-                pass  # malformed coordinates; skip
+            except (ValueError, IndexError):
+                pass  # malformed; skip
         start = bracket_close + 1
     return out

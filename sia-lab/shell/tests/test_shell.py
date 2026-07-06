@@ -74,6 +74,15 @@ def test_parse_type_and_scroll():
     )
 
 
+def test_parse_colon_separated_fallback():
+    tags = parse_action_tags("[POINT:1280,720,submit]")
+    assert len(tags) == 1
+    assert tags[0].kind == "POINT"
+    assert tags[0].x == 1280.0
+    assert tags[0].y == 720.0
+    assert tags[0].label == "submit"
+
+
 def test_dispatcher_runs_tools_and_actions():
     def runner(tag: ActionTag) -> str:
         return f"ran {tag.kind}"

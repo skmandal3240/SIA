@@ -8,7 +8,7 @@ SIA is an edge-first AI companion that runs locally on phones, laptops, mini-PCs
 |-------|------|--------|----------|
 | **P0 — Substrate** | LFM2.5 runs on Ollama + browser ONNX; 125K context proven | ✅ done | GGUF downloaded, `sia-p0` Ollama model created, text + tool inference verified |
 | **P1 — Action adapter** | Device-actions LoRA with 95% tool-call accuracy | 50% | LoRA trained, merged into GGUF, Ollama `sia-p1` created; measured accuracy 0% on smoke eval, needs retraining with stronger data/prompt |
-| **P2 — Shell** | See screen → reason → point/act + speak, shared dispatcher | 70% | Linux shell stubs, dispatcher, tag parser, tests passing; real macOS capture/audio pending |
+| **P2 — Shell** | See screen → reason → point/act + speak, shared dispatcher | 80% | Linux real capture + Ollama reasoner bridge + smoke; macOS capture/audio pending |
 | **P3 — Deep core** | RDT-MoE+MLA+ACT reasoner beats fast path on multi-hop | 60% | Tiny from-scratch model overfits on CPU; up-cycle from LFM2.5 not done |
 | **P4 — Memory + eval** | TokenCake + episodic + GraphRAG + governor tests | 60% | All modules and tests in repo, not yet wired to live reasoner |
 | **P5 — Swarm + distillation** | N=2 swarm loop and Mixture-of-Students lift | 0% | Not started |
