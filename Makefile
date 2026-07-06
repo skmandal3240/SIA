@@ -1,4 +1,4 @@
-.PHONY: ci lint validate smoke eval status privacy shell-p2
+.PHONY: ci lint validate smoke eval status privacy shell-p2 reasoner-p3
 
 PYTHON := python3
 
@@ -32,6 +32,12 @@ shell-p2:
 	@echo "==> P2 shell: compile + smoke"
 	$(PYTHON) -m py_compile sia-lab/shell/*.py
 	$(PYTHON) sia-lab/shell/smoke_p2.py
+
+reasoner-p3:
+	@echo "==> P3 reasoner: self-check + overfit + eval"
+	$(PYTHON) sia-lab/reasoner/reasoner.py
+	$(PYTHON) sia-lab/reasoner/tiny_overfit.py
+	$(PYTHON) sia-lab/reasoner/p3_eval.py
 
 eval:
 	@echo "==> eval: memory + benchmark harness"
