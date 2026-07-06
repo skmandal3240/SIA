@@ -98,7 +98,7 @@ def _make_dry_dataset(path: Path | None = None) -> list[dict]:
         with open(path, encoding="utf-8") as f:
             samples = json.load(f)
         return samples
-    return make_dry_dataset(path)
+    return samples
 
 
 def smoke_dataset(path: Path | None = None) -> int:
@@ -169,7 +169,11 @@ def real_run(args: argparse.Namespace) -> int:
 
     ds_path = Path(args.dataset)
     if not ds_path.exists():
-        make_dry_dataset(ds_path)
+        ds_path.parent.mkdir(parents=True, exist_ok=True)
+        ds_path.write_text(
+            json.dumps(_make_dry_dataset(ds_path), ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
 
     from datasets import load_dataset  # type: ignore
     dataset = load_dataset("json", data_files=str(ds_path), split="train")

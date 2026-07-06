@@ -17,6 +17,7 @@ sys.path.insert(0, str(ROOT / "sia-lab"))
 
 from shell.loop import ShellLoop
 from shell.capture import CaptureStub
+from shell.stt import StreamingSTTStub
 from memory import TokenCake, GraphRAGStub, EpisodicStore
 
 
@@ -35,11 +36,13 @@ def main() -> int:
 
     loop = ShellLoop(
         capture=CaptureStub(),
+        stt=StreamingSTTStub(["What is my name?"]),
         reason=reason,
         memory=cake,
     )
 
     turn = loop.run_once([b"What is my name?"])
+    assert turn.transcript == "What is my name?", turn.transcript
     print("transcript:", turn.transcript)
     print("context:", turn.context)
     print("response:", turn.response)

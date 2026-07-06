@@ -28,7 +28,7 @@ from shell.reason_ollama import reason_with_ollama
 
 def main(argv: list[str] | None = None) -> int:
     argv = argv or sys.argv[1:]
-    model_tag = argv[0] if argv else "sia-p1"  # ponytail: p1 is smaller/faster for smoke
+    model_tag = argv[0] if argv else "sia-p0"  # ponytail: p0 substrate is the verified model; pass a tag to override
     capture = default_capture()
     transcript = "set an alarm for seven am and point to the submit button"
 

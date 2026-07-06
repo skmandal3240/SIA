@@ -70,3 +70,7 @@ eval:
 	$(PYTHON) sia-lab/memory/graphrag.py
 	$(PYTHON) sia-lab/eval/multi_hop.py
 	$(PYTHON) sia-lab/eval/governor.py
+
+status:
+	@echo "==> status: current phase table"
+	@cat STATUS.md

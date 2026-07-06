@@ -7,7 +7,7 @@ SIA is an edge-first AI companion that runs locally on phones, laptops, mini-PCs
 | Phase | Goal | Status | Evidence |
 |-------|------|--------|----------|
 | **P0 — Substrate** | LFM2.5 runs on Ollama + browser ONNX; 125K context proven | ✅ done | GGUF downloaded, `sia-p0` Ollama model created, text + tool inference verified |
-| **P1 — Action adapter** | Device-actions LoRA with 95% tool-call accuracy | 70% | 1000-example dataset + fixed dry-run pipeline; real GPU LoRA run remains |
+| **P1 — Action adapter** | Device-actions LoRA with 95% tool-call accuracy | 70% scaffold / 0% trained | 1000-example dataset + fixed dry-run pipeline; adapter not yet trained, so measured tool-call accuracy is 0% — real GPU LoRA run remains |
 | **P2 — Shell** | See screen → reason → point/act + speak, shared dispatcher | 85% | Linux real capture + Ollama bridge + memory context; `make shell-p2` passes |
 | **P3 — Deep core** | RDT-MoE+MLA+ACT reasoner beats fast path on multi-hop | 80% | Router, governor, deep-path + memory; `make reasoner-p3` passes; real LFM2.5 up-cycle needs GPU training |
 | **P4 — Memory + eval** | TokenCake + episodic + GraphRAG wired to reasoner/shell | 85% | Memory wired into reasoner and shell; `make p4-memory` passes |
