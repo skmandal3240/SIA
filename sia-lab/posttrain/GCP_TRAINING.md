@@ -33,6 +33,18 @@ Overrides via env vars: `EPOCHS=5`, `KEEP_VM=1` (don't auto-delete),
 bucket are baked in (`sia-edge-prod` / `sia-artifacts`); override with
 `PROJECT_ID=` / `BUCKET=` if they change.
 
+**No GPU quota?** Fresh projects often have `GPUS_ALL_REGIONS = 0`, which blocks
+every GPU (L4 *and* T4 — it's a global cap). Run in CPU-only mode, which needs
+no GPU quota at all:
+
+```bash
+GPU=0 EPOCHS=1 bash sia-lab/posttrain/run_on_gcp.sh
+```
+
+This provisions a CPU VM (`e2-standard-8`) and trains in fp32. It's slower than
+an L4 but the dataset is tiny, so it still finishes; use `EPOCHS=1` for the
+first pass. Switch back to the GPU path once a quota increase is approved.
+
 The options below are the manual equivalents if you prefer to drive it yourself.
 
 ---

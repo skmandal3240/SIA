@@ -25,8 +25,16 @@ BUCKET="${BUCKET:-sia-artifacts}"
 REGION="${REGION:-asia-south1}"
 ZONE="${ZONE:-asia-south1-a}"
 VM="${VM:-sia-p1-train}"
-MACHINE_TYPE="${MACHINE_TYPE:-g2-standard-8}"
-ACCELERATOR="${ACCELERATOR:-type=nvidia-l4,count=1}"
+# GPU=1 (default) uses an L4 GPU VM; GPU=0 uses a CPU-only VM, which needs NO
+# GPU quota — the fallback when GPUS_ALL_REGIONS is 0 on a fresh project.
+GPU="${GPU:-1}"
+if [ "$GPU" = "0" ]; then
+  MACHINE_TYPE="${MACHINE_TYPE:-e2-standard-8}"   # 8 vCPU / 32 GB, no accelerator
+  ACCELERATOR=""
+else
+  MACHINE_TYPE="${MACHINE_TYPE:-g2-standard-8}"
+  ACCELERATOR="${ACCELERATOR:-type=nvidia-l4,count=1}"
+fi
 BASE_MODEL="${BASE_MODEL:-unsloth/Llama-3.2-1B-Instruct}"
 REPO="${REPO:-https://github.com/skmandal3240/SIA.git}"
 EPOCHS="${EPOCHS:-3}"
@@ -54,7 +62,7 @@ command -v gcloud >/dev/null 2>&1 || die "gcloud CLI not found. Install: https:/
 gcloud auth list --filter=status:ACTIVE --format="value(account)" 2>/dev/null | grep -q . \
   || die "No active gcloud account. Run: gcloud auth login"
 
-log "project=$PROJECT_ID  zone=$ZONE  gpu=$ACCELERATOR  base=$BASE_MODEL  epochs=$EPOCHS"
+log "project=$PROJECT_ID  zone=$ZONE  compute=$([ "$GPU" = "0" ] && echo "CPU ($MACHINE_TYPE)" || echo "GPU ($ACCELERATOR)")  base=$BASE_MODEL  epochs=$EPOCHS"
 log "artifact will be written to: $OUTPUT_URI"
 gcloud config set project "$PROJECT_ID" >/dev/null
 
@@ -109,38 +117,51 @@ fi
 EOF
 
 # --------------------------------------------------------------------------- #
-# Create the GPU VM
+# Create the VM
 # --------------------------------------------------------------------------- #
 if gcloud compute instances describe "$VM" --zone="$ZONE" >/dev/null 2>&1; then
   die "VM '$VM' already exists in $ZONE. Delete it first: gcloud compute instances delete $VM --zone=$ZONE"
 fi
 
-# Resolve the newest available CUDA Deep Learning VM image family (these get
+# Resolve the newest available Deep Learning VM image family (these get
 # retired/renamed, so we look one up instead of trusting a hardcoded name).
+# GPU runs use a CUDA family (common-cu*); CPU runs use a CPU family (common-cpu*).
 if [ -z "$IMAGE_FAMILY" ]; then
-  log "resolving latest CUDA Deep Learning VM image family in $IMAGE_PROJECT..."
+  if [ "$GPU" = "0" ]; then img_pat='^common-cpu'; else img_pat='^common-cu[0-9]+'; fi
+  log "resolving latest Deep Learning VM image family (~$img_pat) in $IMAGE_PROJECT..."
   IMAGE_FAMILY=$(gcloud compute images list \
     --project="$IMAGE_PROJECT" \
-    --filter="family~'^common-cu[0-9]+'" \
+    --filter="family~'${img_pat}'" \
     --format="value(family)" 2>/dev/null | sort -Vu | tail -n1)
 fi
-[ -n "$IMAGE_FAMILY" ] || die "could not resolve a CUDA image family in $IMAGE_PROJECT. List options with: gcloud compute images list --project $IMAGE_PROJECT --filter=\"family~common-cu\" --format=\"value(family)\" | sort -u"
+[ -n "$IMAGE_FAMILY" ] || die "could not resolve an image family in $IMAGE_PROJECT. List options with: gcloud compute images list --project $IMAGE_PROJECT --format=\"value(family)\" | sort -u"
 log "boot image family: $IMAGE_FAMILY ($IMAGE_PROJECT)"
 
-log "creating L4 VM '$VM' (this also starts training via the boot script)"
-gcloud compute instances create "$VM" \
-  --project="$PROJECT_ID" \
-  --zone="$ZONE" \
-  --machine-type="$MACHINE_TYPE" \
-  --accelerator="$ACCELERATOR" \
-  --maintenance-policy=TERMINATE \
-  --provisioning-model=STANDARD \
-  --image-family="$IMAGE_FAMILY" \
-  --image-project="$IMAGE_PROJECT" \
-  --boot-disk-size=100GB \
-  --scopes=https://www.googleapis.com/auth/cloud-platform \
-  --metadata=install-nvidia-driver=True \
+# Assemble create args; GPU-only flags are added conditionally so a CPU run
+# needs no accelerator and no GPU quota.
+create_args=(
+  "$VM"
+  --project="$PROJECT_ID"
+  --zone="$ZONE"
+  --machine-type="$MACHINE_TYPE"
+  --image-family="$IMAGE_FAMILY"
+  --image-project="$IMAGE_PROJECT"
+  --boot-disk-size=100GB
+  --scopes=https://www.googleapis.com/auth/cloud-platform
   --metadata-from-file=startup-script="$STARTUP_FILE"
+)
+if [ "$GPU" = "0" ]; then
+  log "creating CPU VM '$VM' ($MACHINE_TYPE, no GPU quota needed) — training starts via the boot script"
+else
+  create_args+=(
+    --accelerator="$ACCELERATOR"
+    --maintenance-policy=TERMINATE
+    --provisioning-model=STANDARD
+    --metadata=install-nvidia-driver=True
+  )
+  log "creating L4 GPU VM '$VM' — training starts via the boot script"
+fi
+gcloud compute instances create "${create_args[@]}"
 
 log "VM created. Training runs on boot; logs at /var/log/sia-train.log on the VM."
 log "Tail live:  gcloud compute ssh $VM --zone=$ZONE --command 'sudo tail -f /var/log/sia-train.log'"

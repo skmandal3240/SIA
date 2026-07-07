@@ -132,8 +132,14 @@ def real_run(args: argparse.Namespace) -> int:
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
 
-    dtype = torch.bfloat16 if torch.cuda.is_available() and torch.cuda.is_bf16_supported() else torch.float16
-    model = AutoModelForCausalLM.from_pretrained(args.base, torch_dtype=dtype, device_map="auto")
+    # On a GPU use bf16/fp16; on CPU-only VMs use fp32 — half precision matmul
+    # is unsupported/painfully slow on CPU, so fp16 there would crash or crawl.
+    if torch.cuda.is_available():
+        dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
+        model = AutoModelForCausalLM.from_pretrained(args.base, torch_dtype=dtype, device_map="auto")
+    else:
+        dtype = torch.float32
+        model = AutoModelForCausalLM.from_pretrained(args.base, torch_dtype=dtype)
 
     # Register the SIA action tokens as single tokens and grow the embeddings.
     new_tokens = [t for t in SIA_SPECIAL_TOKENS if t not in tokenizer.get_vocab()]
