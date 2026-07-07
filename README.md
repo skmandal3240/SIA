@@ -28,9 +28,17 @@ SIA is an edge-first AI companion that runs locally on phones, laptops, mini-PCs
 ## Quick start
 
 ```bash
+make run       # build + run the full stack end-to-end on the from-scratch core (no training)
 make ci        # lint + validate + smoke + eval + status
 make privacy   # network egress test
 ```
+
+`make run` executes the whole SIA loop — perceive → govern → route → reason →
+remember → act → speak — wiring P2 (shell), P3 (router + from-scratch deep
+core), P4 (memory), and P5 (swarm) into one pass. The deep core is
+random-initialized: it genuinely runs a forward + generate pass, but until it
+is trained its raw output is a diagnostic only and spoken answers are grounded
+in retrieved memory. No GPU required.
 
 ## Layer map
 
@@ -38,10 +46,10 @@ make privacy   # network egress test
 |-------|------|----------|--------|
 | L0 | Substrate | `sia-lab/product/`, `PROJECT/models/Modelfile` | ✅ verified |
 | L1 | Fast path | `sia-lab/product/verify_p0.py` | scaffolded |
-| L2 | Action adapter | `sia-lab/posttrain/`, `sia-lab/posttrain/adapter/` | trained + merged, needs retraining for accuracy |
-| L3 | Reasoner | `sia-lab/reasoner/` | tiny model gate passing |
-| L4 | Memory | `sia-lab/memory/` | modules + tests |
-| L5 | Swarm | planned | not started |
+| L2 | Action adapter | `sia-lab/posttrain/`, `sia-lab/posttrain/adapter/` | scaffold + dry-run; adapter not trained (0% tool-call accuracy) |
+| L3 | Reasoner | `sia-lab/reasoner/` | from-scratch tiny core runs; wired into `make run` |
+| L4 | Memory | `sia-lab/memory/` | modules + tests; wired into `make run` |
+| L5 | Swarm | `sia-lab/swarm/` | N=2 consensus wired; `make swarm-p5` / `make run` |
 
 ## GPU training command
 
