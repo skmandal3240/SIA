@@ -16,6 +16,27 @@ resize it any time with `python3 sia-lab/posttrain/generate_dataset.py --n 2000`
 
 ---
 
+## Option 0 — One command (laptop-side driver)
+
+[`run_on_gcp.sh`](run_on_gcp.sh) does the whole thing from your laptop:
+provisions an L4 VM in `asia-south1`, trains via a boot-time startup script,
+waits for the adapter to land in the bucket, and deletes the VM afterward. It
+only needs an authenticated `gcloud` CLI.
+
+```bash
+gcloud auth login
+bash sia-lab/posttrain/run_on_gcp.sh
+```
+
+Overrides via env vars: `EPOCHS=5`, `KEEP_VM=1` (don't auto-delete),
+`NO_WAIT=1` (launch and return), `BASE_MODEL=...`, `ZONE=...`. The project and
+bucket are baked in (`sia-edge-prod` / `sia-artifacts`); override with
+`PROJECT_ID=` / `BUCKET=` if they change.
+
+The options below are the manual equivalents if you prefer to drive it yourself.
+
+---
+
 ## Option A — Deep Learning VM with a GPU (simplest)
 
 A single **L4** (`g2-standard-8`) or **T4** (`n1-standard-8` + 1×T4) trains the
