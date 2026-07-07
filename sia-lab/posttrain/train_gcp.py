@@ -170,7 +170,7 @@ def real_run(args: argparse.Namespace) -> int:
     # is trained only on the tool-call completion, not on echoing the prompt.
     collator = None
     try:
-        from trl import DataCollatorForCompletionOnlyLM  # type: ignore
+        from trl.trainer import DataCollatorForCompletionOnlyLM  # type: ignore
         # The assistant marker as rendered by the template; adjust if you swap it.
         collator = DataCollatorForCompletionOnlyLM("assistant:", tokenizer=tokenizer)
     except Exception as exc:  # pragma: no cover - older/newer trl variations
@@ -181,6 +181,7 @@ def real_run(args: argparse.Namespace) -> int:
         tokenizer=tokenizer,
         train_dataset=train_ds,
         data_collator=collator,
+        max_seq_length=args.max_seq_length,
         args=SFTConfig(
             output_dir=args.local_dir,
             per_device_train_batch_size=args.batch_size,
@@ -193,7 +194,6 @@ def real_run(args: argparse.Namespace) -> int:
             logging_steps=10,
             bf16=(dtype == torch.bfloat16),
             fp16=(dtype == torch.float16),
-            max_seq_length=args.max_seq_length,
             dataset_text_field="text",
             report_to="none",
             seed=42,
