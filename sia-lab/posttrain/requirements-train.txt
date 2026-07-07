@@ -1,0 +1,13 @@
+# SIA P1 training deps — Google Cloud GPU VM / Vertex AI custom job.
+# Install into a CUDA-enabled environment (Deep Learning VM images ship torch).
+# If torch is already present on the image, skip the first line.
+torch>=2.2
+transformers>=4.44
+peft>=0.11
+trl>=0.9
+datasets>=2.19
+accelerate>=0.30
+huggingface_hub>=0.23
+sentencepiece>=0.2
+# bitsandbytes is only needed if you enable 4-bit/8-bit loading.
+# bitsandbytes>=0.43

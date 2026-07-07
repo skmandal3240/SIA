@@ -78,7 +78,13 @@ def reason_with_ollama(
 
 def main(argv: list[str] = sys.argv) -> int:
     # Self-check: call with synthetic input.
-    from .capture import CaptureStub
+    try:
+        from .capture import CaptureStub
+    except ImportError:
+        # Standalone run (`python sia-lab/shell/reason_ollama.py`): no parent
+        # package, so fall back to an absolute import off this file's dir.
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        from capture import CaptureStub
     screenshot = CaptureStub().grab()
     transcript = " ".join(argv[1:]) or "hello sia"
     response, tools = reason_with_ollama(screenshot, transcript, context="self-check")

@@ -1,6 +1,6 @@
 # SIA Project Status
 
-Last updated: 2026-07-06
+Last updated: 2026-07-07
 
 ## Phase table
 
@@ -13,6 +13,17 @@ Last updated: 2026-07-06
 | P4 — Memory | 85% | TokenCake + episodic + GraphRAG wired; `make p4-memory` |
 | P5 — Swarm + distillation | 75% | N=2 swarm + MoS scaffold; `make swarm-p5` |
 | P6 — Harden | 60% | Privacy egress test + audit log + OTA manifest; needs full hardening |
+| Integration | ✅ runnable | P2–P5 wired into one perceive→route→reason→remember→act→speak loop; from-scratch deep core executes (untrained); `make run` |
+
+## Build & run the model (no training)
+
+```bash
+make run       # full SIA stack end-to-end on the from-scratch core
+```
+
+The deep core is random-initialized, so its raw generation is a diagnostic only
+(`core_output`); spoken answers are grounded in retrieved memory. Everything
+except the P1 LoRA and the deep-core up-cycle runs without a GPU.
 
 ## Quick check
 

@@ -1,4 +1,4 @@
-.PHONY: ci lint validate smoke eval status privacy shell-p2 reasoner-p3 v1-status p4-memory
+.PHONY: ci lint validate smoke eval status privacy shell-p2 reasoner-p3 v1-status p4-memory run
 
 PYTHON := python3
 
@@ -27,6 +27,11 @@ smoke:
 	$(PYTHON) sia-lab/infra/benchmark.py
 	$(PYTHON) sia-lab/reasoner/reasoner.py
 	$(PYTHON) sia-lab/reasoner/tiny_overfit.py
+	$(PYTHON) sia-lab/run_sia.py
+
+run:
+	@echo "==> run: full SIA stack end-to-end (perceive -> route -> reason -> remember -> act -> speak)"
+	$(PYTHON) sia-lab/run_sia.py
 
 shell-p2:
 	@echo "==> P2 shell: compile + smoke"
@@ -61,6 +66,10 @@ v1-status:
 	$(PYTHON) sia-lab/swarm/swarm.py
 	$(PYTHON) sia-lab/safety/audit.py
 	$(PYTHON) sia-lab/infra/ota.py
+	$(PYTHON) sia-lab/safety/privacy.py
+
+privacy:
+	@echo "==> privacy: network egress test"
 	$(PYTHON) sia-lab/safety/privacy.py
 
 eval:
