@@ -50,7 +50,7 @@ python3 sia-lab/posttrain/train_gcp.py --dry-run
 
 # 7. Train, evaluate, and push the adapter to a bucket.
 python3 sia-lab/posttrain/train_gcp.py \
-  --base meta-llama/Llama-3.2-1B-Instruct \
+  --base unsloth/Llama-3.2-1B-Instruct \
   --output-dir gs://YOUR_BUCKET/sia/device_actions_lora \
   --epochs 3 --merge
 ```
@@ -75,7 +75,7 @@ gcloud ai custom-jobs create \
   --region=us-central1 \
   --display-name=sia-p1-lora \
   --worker-pool-spec=machine-type=g2-standard-8,replica-count=1,accelerator-type=NVIDIA_L4,accelerator-count=1,container-image-uri=us-docker.pkg.dev/deeplearning-platform-release/gcr.io/pytorch-gpu.2-3.py310:latest,local-package-path=.,script=sia-lab/posttrain/train_gcp.py \
-  --args=--base=meta-llama/Llama-3.2-1B-Instruct,--output-dir=gs://YOUR_BUCKET/sia/device_actions_lora,--epochs=3,--merge
+  --args=--base=unsloth/Llama-3.2-1B-Instruct,--output-dir=gs://YOUR_BUCKET/sia/device_actions_lora,--epochs=3,--merge
 ```
 
 Set `HF_TOKEN` in the job environment (or pass a public `unsloth/*` base) so a

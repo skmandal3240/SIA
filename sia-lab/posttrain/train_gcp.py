@@ -21,7 +21,7 @@ Quick check without a GPU (validates data + config + wiring only):
 
 Real run on a GCP GPU VM:
     python3 sia-lab/posttrain/train_gcp.py \
-        --base meta-llama/Llama-3.2-1B-Instruct \
+        --base unsloth/Llama-3.2-1B-Instruct \
         --train sia-lab/posttrain/data/device_actions_train.json \
         --val   sia-lab/posttrain/data/device_actions_val.json \
         --output-dir gs://YOUR_BUCKET/sia/device_actions_lora \
@@ -243,8 +243,8 @@ def evaluate(model, tokenizer, val_samples: list[dict], max_seq_length: int) -> 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="SIA P1 device-actions LoRA trainer (GCP)")
-    parser.add_argument("--base", default="meta-llama/Llama-3.2-1B-Instruct",
-                        help="HF base model id (or unsloth/Llama-3.2-1B-Instruct)")
+    parser.add_argument("--base", default="unsloth/Llama-3.2-1B-Instruct",
+                        help="HF base model id (default: unsloth/Llama-3.2-1B-Instruct, ungated)")
     parser.add_argument("--train", default="sia-lab/posttrain/data/device_actions_train.json")
     parser.add_argument("--val", default="sia-lab/posttrain/data/device_actions_val.json")
     parser.add_argument("--output-dir", default="sia-lab/posttrain/outputs/device_actions_lora",
