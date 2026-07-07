@@ -33,17 +33,17 @@ def check_macos_permission() -> None:
     if not _screencapture_available():
         raise RuntimeError("screencapture not found; this helper only works on macOS")
 
-    with subprocess.run(
+    proc = subprocess.run(
         ["screencapture", "-x", "-P", "-"],
         capture_output=True,
-    ) as proc:
-        data = proc.stdout
-        if not data or all(b == 0 for b in data[:1024]):
-            raise ScreenCapturePermissionError(
-                "macOS screen-recording permission denied. "
-                "Open System Settings > Privacy & Security > Screen Recording, "
-                "and allow the terminal/IDE running SIA. Then re-run."
-            )
+    )
+    data = proc.stdout
+    if not data or all(b == 0 for b in data[:1024]):
+        raise ScreenCapturePermissionError(
+            "macOS screen-recording permission denied. "
+            "Open System Settings > Privacy & Security > Screen Recording, "
+            "and allow the terminal/IDE running SIA. Then re-run."
+        )
 
 
 class MacosCapture:
