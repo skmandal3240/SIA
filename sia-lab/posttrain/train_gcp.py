@@ -196,9 +196,9 @@ def real_run(args: argparse.Namespace) -> int:
         train_dataset=train_ds,
         data_collator=collator,
         formatting_func=lambda x: tokenizer.apply_chat_template(x["messages"], tokenize=False),
-        max_seq_length=args.max_seq_length,
         args=SFTConfig(
             output_dir=args.local_dir,
+            max_length=args.max_seq_length,
             per_device_train_batch_size=args.batch_size,
             gradient_accumulation_steps=args.grad_accum,
             num_train_epochs=args.epochs,
