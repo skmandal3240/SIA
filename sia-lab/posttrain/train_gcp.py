@@ -192,7 +192,7 @@ def real_run(args: argparse.Namespace) -> int:
 
     trainer = SFTTrainer(
         model=model,
-        tokenizer=tokenizer,
+        processing_class=tokenizer,
         train_dataset=train_ds,
         data_collator=collator,
         formatting_func=lambda x: tokenizer.apply_chat_template(x["messages"], tokenize=False),

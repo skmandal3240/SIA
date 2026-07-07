@@ -165,7 +165,7 @@ def smoke() -> None:
     # Response-only loss via DataCollatorForCompletionOnlyLM in SFTTrainer
     trainer = SFTTrainer(
         model=model,
-        tokenizer=tokenizer,
+        processing_class=tokenizer,
         train_dataset=dataset,
         dataset_text_field="text",
         args=SFTConfig(
