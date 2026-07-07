@@ -37,6 +37,13 @@ NO_WAIT="${NO_WAIT:-0}"      # 1 = return right after launching; do not poll
 WAIT_TIMEOUT="${WAIT_TIMEOUT:-3600}"   # seconds to wait for the artifact
 AUTO_DELETE=$([ "$KEEP_VM" = "1" ] && echo false || echo true)
 
+# Boot image. Google retires Deep Learning VM image families periodically, so
+# rather than hardcode one (which breaks when it's removed), resolve the newest
+# available CUDA family at runtime. Override with IMAGE_FAMILY=... if you want a
+# specific one.
+IMAGE_PROJECT="${IMAGE_PROJECT:-deeplearning-platform-release}"
+IMAGE_FAMILY="${IMAGE_FAMILY:-}"
+
 log() { printf '\033[1;36m[run_on_gcp]\033[0m %s\n' "$*"; }
 die() { printf '\033[1;31m[run_on_gcp] ERROR:\033[0m %s\n' "$*" >&2; exit 1; }
 
@@ -108,6 +115,18 @@ if gcloud compute instances describe "$VM" --zone="$ZONE" >/dev/null 2>&1; then
   die "VM '$VM' already exists in $ZONE. Delete it first: gcloud compute instances delete $VM --zone=$ZONE"
 fi
 
+# Resolve the newest available CUDA Deep Learning VM image family (these get
+# retired/renamed, so we look one up instead of trusting a hardcoded name).
+if [ -z "$IMAGE_FAMILY" ]; then
+  log "resolving latest CUDA Deep Learning VM image family in $IMAGE_PROJECT..."
+  IMAGE_FAMILY=$(gcloud compute images list \
+    --project="$IMAGE_PROJECT" \
+    --filter="family~'^common-cu[0-9]+'" \
+    --format="value(family)" 2>/dev/null | sort -Vu | tail -n1)
+fi
+[ -n "$IMAGE_FAMILY" ] || die "could not resolve a CUDA image family in $IMAGE_PROJECT. List options with: gcloud compute images list --project $IMAGE_PROJECT --filter=\"family~common-cu\" --format=\"value(family)\" | sort -u"
+log "boot image family: $IMAGE_FAMILY ($IMAGE_PROJECT)"
+
 log "creating L4 VM '$VM' (this also starts training via the boot script)"
 gcloud compute instances create "$VM" \
   --project="$PROJECT_ID" \
@@ -116,8 +135,8 @@ gcloud compute instances create "$VM" \
   --accelerator="$ACCELERATOR" \
   --maintenance-policy=TERMINATE \
   --provisioning-model=STANDARD \
-  --image-family=common-cu121-debian-11 \
-  --image-project=deeplearning-platform-release \
+  --image-family="$IMAGE_FAMILY" \
+  --image-project="$IMAGE_PROJECT" \
   --boot-disk-size=100GB \
   --scopes=https://www.googleapis.com/auth/cloud-platform \
   --metadata=install-nvidia-driver=True \
