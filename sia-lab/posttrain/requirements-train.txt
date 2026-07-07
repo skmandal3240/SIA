@@ -11,3 +11,6 @@ huggingface_hub>=0.23
 sentencepiece>=0.2
 # bitsandbytes is only needed if you enable 4-bit/8-bit loading.
 # bitsandbytes>=0.43
+
+# PEFT >=0.11 requires torchao >=0.16.0 for adapter creation.
+torchao>=0.16.0
