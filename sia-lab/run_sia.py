@@ -44,6 +44,10 @@ from shell.tts import StreamingTTSStub  # noqa: E402
 from shell.dispatcher import Dispatcher  # noqa: E402
 from swarm.swarm import SwarmRuntime, SwarmNode, SwarmTask  # noqa: E402
 
+# Reusable SIA action parser if available.
+sys.path.insert(0, str(ROOT / "posttrain"))
+from parse_action import parse_sia_text  # type: ignore # noqa: E402
+
 
 # A tiny world model so the memory-grounded answers have something to retrieve.
 # In a deployed SIA these triples come from the user's own device context.
@@ -128,6 +132,13 @@ class SIARuntime:
             tag = " [POINT:640,360:submit_button:screen0]"
         return tool_calls, tag
 
+    def _parse_response(self, response: str) -> tuple[list[dict], list[str], str]:
+        """Use the real SIA grammar parser when the response emits SIA tags."""
+        tools, actions, stripped = parse_sia_text(response)
+        tool_calls = [{"tool": t.tool, "args": t.arguments} for t in tools]
+        tags = [f" [POINT:{a.x},{a.y}:{a.label}:{a.screen}]" for a in actions]
+        return tool_calls, tags, stripped
+
     # -- one full loop turn ------------------------------------------------
     def run_turn(self, query: str, context: list[str] | None = None) -> TurnTrace:
         context = context or []
@@ -155,14 +166,22 @@ class SIARuntime:
                 if consensus:
                     answer = consensus
 
-        # Act (P2): fold intent-derived tools + action tag into the response.
-        tool_calls, action_tag = self._intent_extras(transcript)
+        # Act (P2): try SIA grammar first, fall back to keyword heuristic.
+        parsed_calls, parsed_tags, clean_response = self._parse_response(answer)
+        if parsed_calls or parsed_tags:
+            tool_calls, action_tags = parsed_calls, parsed_tags
+        else:
+            tool_calls, action_tags = self._intent_extras(transcript)
+        action_tag = action_tags[0] if action_tags else ""
+
         # An action/tool command with no factual answer should read as a
         # confirmation, not the "no context" grounding fallback.
-        low_signal = answer in ("unknown", "I don't have enough context yet.")
+        low_signal = clean_response in ("unknown", "I don't have enough context yet.")
         if low_signal and (tool_calls or action_tag):
             done = ", ".join(c["tool"] for c in tool_calls) or "the on-screen action"
             answer = f"Done: {done}"
+        elif parsed_calls or parsed_tags:
+            answer = clean_response
         response = f"{answer}{action_tag}" if action_tag else answer
         tools, actions = self.dispatcher.dispatch(response, tool_calls)
 

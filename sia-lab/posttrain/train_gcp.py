@@ -85,6 +85,15 @@ def assistant_target(sample: dict) -> str:
 # Dry-run: no GPU, no heavy deps — just prove the data + config are sound.
 # --------------------------------------------------------------------------- #
 def dry_run(args: argparse.Namespace) -> int:
+    """Run every non-GPU check: imports, schema, LoRA target list, and dataset."""
+    # Import trl here so dry-run still validates the version/call sites we rely on.
+    try:
+        from trl import SFTConfig, SFTTrainer  # type: ignore
+        print("trl import ok")
+    except Exception as e:
+        print(f"trl import failed: {e}")
+        return 1
+
     train = load_chat_json(Path(args.train))
     val = load_chat_json(Path(args.val))
     text = json.dumps(train + val, ensure_ascii=False)
@@ -136,11 +145,18 @@ def real_run(args: argparse.Namespace) -> int:
     model = AutoModelForCausalLM.from_pretrained(args.base, torch_dtype=dtype, device_map="auto")
 
     # Register the SIA action tokens as single tokens and grow the embeddings.
-    new_tokens = [t for t in SIA_SPECIAL_TOKENS if t not in tokenizer.get_vocab()]
+    sia_tokens = SIA_SPECIAL_TOKENS
+    existing_vocab = tokenizer.get_vocab()
+    new_tokens = [t for t in sia_tokens if t not in existing_vocab]
     if new_tokens:
         tokenizer.add_special_tokens({"additional_special_tokens": new_tokens})
         model.resize_token_embeddings(len(tokenizer))
         print(f"added {len(new_tokens)} SIA special tokens")
+
+    # Ensure the SIA tokens appear in generation vocab. If the base model
+    # already has them, skip; otherwise grow embeddings before LoRA.
+    missing_after = [t for t in sia_tokens if t not in tokenizer.get_vocab()]
+    assert not missing_after, f"special tokens still missing: {missing_after}"
 
     model = get_peft_model(
         model,
@@ -161,26 +177,25 @@ def real_run(args: argparse.Namespace) -> int:
             "{% for m in messages %}{{ m.role }}: {{ m.content }}\n{% endfor %}assistant: "
         )
 
-    def to_text(sample: dict) -> dict:
-        return {"text": tokenizer.apply_chat_template(sample["messages"], tokenize=False)}
+    # Keep raw messages so the completion-only collator can mask user/system turns.
+    train_ds = Dataset.from_list(train_samples)
 
-    train_ds = Dataset.from_list([to_text(s) for s in train_samples])
-
-    # Response-only loss: mask everything up to the assistant turn so the model
-    # is trained only on the tool-call completion, not on echoing the prompt.
-    collator = None
+    response_template = "assistant:"
     try:
         from trl.trainer import DataCollatorForCompletionOnlyLM  # type: ignore
-        # The assistant marker as rendered by the template; adjust if you swap it.
-        collator = DataCollatorForCompletionOnlyLM("assistant:", tokenizer=tokenizer)
-    except Exception as exc:  # pragma: no cover - older/newer trl variations
+        collator = DataCollatorForCompletionOnlyLM(
+            response_template=response_template, tokenizer=tokenizer
+        )
+    except Exception as exc:
         print(f"response-only collator unavailable ({exc}); training on full text")
+        collator = None
 
     trainer = SFTTrainer(
         model=model,
         tokenizer=tokenizer,
         train_dataset=train_ds,
         data_collator=collator,
+        formatting_func=lambda x: tokenizer.apply_chat_template(x["messages"], tokenize=False),
         max_seq_length=args.max_seq_length,
         args=SFTConfig(
             output_dir=args.local_dir,
@@ -194,7 +209,6 @@ def real_run(args: argparse.Namespace) -> int:
             logging_steps=10,
             bf16=(dtype == torch.bfloat16),
             fp16=(dtype == torch.float16),
-            dataset_text_field="text",
             report_to="none",
             seed=42,
         ),
