@@ -8,6 +8,8 @@ point/act → speak` loop with a shared dispatcher.
 
 - **Screen capture** (`capture.py`): real capture via `mss` on
   Linux/Windows/macOS; stub fallback for CI/headless.
+- **macOS screen capture** (`capture_macos.py`): real capture via the native
+  `screencapture` CLI with permission detection.
 - **Audio I/O** (`audio.py`): record and playback via `ffmpeg` on Linux.
   Does not include STT/TTS models; those are pluggable.
 - **Reasoner bridge** (`reason_ollama.py`): calls the local `sia-p0` model
@@ -42,7 +44,8 @@ python3 -c "from audio import record_audio; open('/tmp/sia_input.wav','wb').writ
 
 | File | Purpose |
 |------|---------|
-| `capture.py` | Screen capture: stub + mss |
+| `capture.py` | Cross-platform screen capture: stub + mss |
+| `capture_macos.py` | macOS screen capture via `screencapture` + permission check |
 | `audio.py` | Linux audio record/playback via ffmpeg |
 | `stt.py` | Streaming STT stub |
 | `tts.py` | Streaming TTS stub |
