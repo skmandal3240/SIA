@@ -86,8 +86,13 @@ def _make_dataset() -> list[dict]:
 
 
 def _mock_model_init():
-    """ponytail: stand-in when unsloth is absent so the smoke path always runs."""
-    from datasets import Dataset
+    """ponytail: stand-in when unsloth is absent so the smoke path always runs.
+
+    This fallback must not import any of the deps the smoke path is degrading
+    away from (``datasets`` included), or it would crash with the very error it
+    exists to survive. A plain list of dicts supports the ``len`` and indexing
+    the smoke path needs.
+    """
 
     class Tok:
         pad_token = "<pad>"
@@ -104,13 +109,11 @@ def _mock_model_init():
         def save_pretrained(self, _path):
             pass
 
-    dataset = Dataset.from_list(_make_dataset())
-    # Expand dataset into text field to mirror SFT dataset_text_field path
-    rows = []
-    for sample in dataset:
-        text = Tok.apply_chat_template(sample["messages"])
-        rows.append({"text": text})
-    dataset = Dataset.from_list(rows)
+    # Expand samples into a text field to mirror the SFT dataset_text_field path.
+    dataset = [
+        {"text": Tok.apply_chat_template(sample["messages"])}
+        for sample in _make_dataset()
+    ]
     return M(), Tok(), dataset
 
 
