@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>French Connection FCN0208UBL — 3D Watch</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      background: #0b0f14;
+      color: #eef2f6;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+    }
+    .brand { font-family: 'Playfair Display', serif; letter-spacing: 0.18em; text-transform: uppercase; }
+
+    .scene {
+      position: fixed;
+      inset: 0;
+      perspective: 1200px;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .stage {
+      width: 100vw;
+      height: 100vh;
+      transform-style: preserve-3d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .watch {
+      position: relative;
+      width: min(42vh, 340px);
+      aspect-ratio: 1;
+      transform-style: preserve-3d;
+      will-change: transform;
+      transition: transform .2s linear;
+      filter: drop-shadow(0 40px 70px rgba(0,0,0,.7));
+    }
+
+    /* Strap */
+    .strap {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 46%;
+      height: 130%;
+      background:
+        repeating-linear-gradient(90deg,
+          rgba(255,255,255,.06) 0 1px,
+          transparent 1px 10%
+        ),
+        repeating-linear-gradient(0deg,
+          #0a0a0a 0 16px,
+          #141414 16px 20px,
+          #0c0c0c 20px 34px,
+          #181818 34px 38px
+        );
+      border-radius: 12px;
+      z-index: 0;
+      box-shadow: inset 0 0 22px rgba(0,0,0,.95);
+    }
+    .strap.top { top: -120%; }
+    .strap.bottom { bottom: -120%; transform: translateX(-50%) scaleY(-1); }
+    .strap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(255,255,255,.12), transparent 30%, transparent 70%, rgba(255,255,255,.12));
+      border-radius: 10px;
+    }
+
+    /* Lugs / case shadow */
+    .lugs {
+      position: absolute;
+      inset: -4%;
+      background: linear-gradient(145deg, #c7cbd1, #8a9097 50%, #5e646b);
+      border-radius: 34% 34% 40% 40% / 26% 26% 34% 34%;
+      transform: translateZ(-18px);
+      filter: blur(2px);
+      z-index: -1;
+    }
+
+    /* Case */
+    .case {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 35%, #ffffff 0 8%, #d8dce2 28%, #9aa0a8 55%, #6d737c 80%, #4b515a 100%);
+      box-shadow:
+        0 25px 55px rgba(0,0,0,.55),
+        inset 0 0 12px rgba(255,255,255,.25),
+        inset -10px -10px 30px rgba(0,0,0,.18);
+      z-index: 2;
+    }
+
+    /* Bezel knurling */
+    .bezel {
+      position: absolute;
+      inset: 4%;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg,
+        #e3e6eb 0deg 1deg, #bcc1c8 1deg 2deg,
+        #e3e6eb 2deg 3deg, #bcc1c8 3deg 4deg,
+        #e3e6eb 4deg 5deg, #bcc1c8 5deg 6deg
+      );
+      background-size: 100% 100%;
+      z-index: 3;
+      box-shadow: inset 0 0 8px rgba(0,0,0,.25);
+      -webkit-mask: radial-gradient(transparent 68%, black 69%);
+      mask: radial-gradient(transparent 68%, black 69%);
+    }
+
+    /* Dial */
+    .dial {
+      position: absolute;
+      inset: 8.5%;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 50% 50%, #aee6f0 0%, #7fd4e6 40%, #5bc6db 80%, #48bacf 100%);
+      z-index: 4;
+      overflow: hidden;
+      box-shadow: inset 0 0 18px rgba(0,0,0,.2);
+    }
+    .dial::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-conic-gradient(from 0deg,
+          rgba(255,255,255,.18) 0deg 1deg,
+          rgba(0,0,0,.06) 1deg 2deg,
+          rgba(255,255,255,.12) 2deg 3deg,
+          rgba(0,0,0,.03) 3deg 4deg
+        );
+      mix-blend-mode: overlay;
+    }
+    .dial::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.45) 0%, transparent 35%);
+    }
+
+    /* Minute track */
+    .minute-track {
+      position: absolute;
+      inset: 7%;
+      border-radius: 50%;
+      border: 2px solid rgba(22,40,50,.55);
+      z-index: 5;
+    }
+    .minute-track::before {
+      content: '';
+      position: absolute;
+      inset: 2.5%;
+      border-radius: 50%;
+      border: 1px solid rgba(22,40,50,.35);
+    }
+    .minute-track::after {
+      content: '';
+      position: absolute;
+      inset: -3%;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.28);
+    }
+
+    /* Indices */
+    .index {
+      position: absolute;
+      left: 50%;
+      top: 8.5%;
+      width: 2px;
+      height: 8%;
+      background: linear-gradient(to bottom, #eef4f6, #b8c4c8);
+      transform-origin: 50% 510%;
+      z-index: 6;
+      border-radius: 2px;
+    }
+    .index.roman {
+      width: auto;
+      height: auto;
+      background: none;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(16px, 2.6vh, 28px);
+      color: rgba(255,255,255,.9);
+      text-shadow: 0 1px 2px rgba(0,0,0,.25);
+      transform-origin: 50% 480%;
+      top: 7%;
+      left: 50%;
+      transform: translateX(-50%) rotate(0deg);
+    }
+
+    /* Sub-dial */
+    .sub-dial {
+      position: absolute;
+      left: 50%;
+      top: 58%;
+      transform: translate(-50%, -50%);
+      width: 26%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: rgba(165,230,242,.55);
+      border: 2px solid rgba(22,40,50,.5);
+      z-index: 6;
+      box-shadow: inset 0 0 8px rgba(0,0,0,.12);
+    }
+    .sub-dial .label {
+      position: absolute;
+      font-size: clamp(7px, 1.1vh, 12px);
+      color: rgba(22,40,50,.8);
+      font-weight: 600;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .sub-dial .label.t { top: 8%; }
+    .sub-dial .label.l { top: 50%; left: 10%; transform: translateY(-50%); }
+    .sub-dial .label.r { top: 50%; right: 10%; left: auto; transform: translateY(-50%); }
+    .sub-hand {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 2px;
+      height: 38%;
+      background: rgba(50,60,70,.8);
+      transform-origin: 50% 100%;
+      transform: translate(-50%, -100%) rotate(55deg);
+      border-radius: 2px;
+      z-index: 7;
+    }
+
+    /* Logo */
+    .logo-text {
+      position: absolute;
+      top: 34%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 7;
+      text-align: center;
+      color: rgba(22,40,50,.9);
+      font-size: clamp(8px, 1.2vh, 14px);
+      letter-spacing: .06em;
+      line-height: 1.1;
+    }
+    .logo-text strong { display: block; font-weight: 600; }
+
+    /* Hands */
+    .hand {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform-origin: 50% 100%;
+      z-index: 8;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0,0,0,.2);
+      background: linear-gradient(180deg, #f3f7f9, #b0bcc4);
+    }
+    .hour {
+      width: 5px;
+      height: 26%;
+      transform: translate(-50%, -100%) rotate(-55deg);
+    }
+    .minute {
+      width: 4px;
+      height: 38%;
+      transform: translate(-50%, -100%) rotate(35deg);
+    }
+    .second {
+      width: 1.5px;
+      height: 42%;
+      background: #8a3b3b;
+      transform: translate(-50%, -100%) rotate(160deg);
+      z-index: 7;
+    }
+    .cap {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 8px;
+      height: 8px;
+      background: radial-gradient(circle, #fff 0%, #aab4bc 100%);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 9;
+      box-shadow: 0 1px 2px rgba(0,0,0,.3);
+    }
+
+    /* Crown */
+    .crown {
+      position: absolute;
+      right: -6%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 14px;
+      height: 26px;
+      background: linear-gradient(90deg, #6d737c, #e3e6eb, #6d737c);
+      border-radius: 0 6px 6px 0;
+      z-index: 1;
+      box-shadow: 2px 0 6px rgba(0,0,0,.35);
+    }
+    .crown::after {
+      content: '';
+      position: absolute;
+      inset: 4px 2px;
+      background: repeating-linear-gradient(0deg, #999 0 2px, #ddd 2px 4px);
+      border-radius: 0 3px 3px 0;
+    }
+
+    /* Scroll content */
+    .scroll-shell {
+      position: relative;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .panel {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 0 clamp(24px, 6vw, 120px);
+      pointer-events: auto;
+    }
+    .panel.left { justify-content: flex-start; }
+    .panel.right { justify-content: flex-end; }
+    .panel.center { justify-content: center; text-align: center; }
+    .card {
+      max-width: 420px;
+      background: rgba(11,15,20,.72);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 20px;
+      padding: 34px 36px;
+      box-shadow: 0 18px 50px rgba(0,0,0,.45);
+    }
+    h1, h2 { font-family: 'Playfair Display', serif; font-weight: 500; }
+    h1 { font-size: clamp(44px, 7vw, 92px); line-height: 1.05; margin-bottom: .2em; }
+    h2 { font-size: clamp(28px, 3.8vw, 48px); line-height: 1.1; margin-bottom: .35em; }
+    .subtitle { font-size: clamp(16px, 1.6vw, 22px); color: #a9b8c8; margin-bottom: 1.4em; }
+    .price { font-size: clamp(28px, 3vw, 42px); font-weight: 600; color: #7fd4e6; margin-bottom: .2em; }
+    .strike { text-decoration: line-through; color: #6c7a8a; font-size: .65em; margin-right: .5em; }
+    .tag { display: inline-block; padding: .35em .9em; border-radius: 999px; background: rgba(127,212,230,.15); color: #7fd4e6; font-size: .8em; font-weight: 600; margin-bottom: 1em; }
+    .features { list-style: none; margin: 1.2em 0; }
+    .features li { padding: .45em 0; border-bottom: 1px solid rgba(255,255,255,.08); color: #c5d2df; }
+    .features li:last-child { border-bottom: none; }
+    .btn {
+      display: inline-block;
+      background: #7fd4e6;
+      color: #07131a;
+      padding: .95em 2em;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: .6em;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 8px 24px rgba(127,212,230,.25);
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(127,212,230,.35); }
+
+    .specs {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 1em;
+    }
+    .spec { background: rgba(255,255,255,.05); padding: 16px; border-radius: 12px; }
+    .spec strong { display: block; font-size: .75em; color: #8aa0b4; margin-bottom: .3em; text-transform: uppercase; letter-spacing: .08em; }
+    .spec span { font-size: 1.05em; color: #e8f0f5; }
+
+    footer {
+      padding: 60px clamp(24px, 6vw, 120px);
+      text-align: center;
+      color: #6b7c8c;
+      font-size: .85em;
+    }
+
+    /* Loading shimmer */
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="scene" aria-hidden="true">
+    <div class="stage" id="stage">
+      <div class="watch" id="watch">
+        <div class="lugs"></div>
+        <div class="strap top"></div>
+        <div class="strap bottom"></div>
+        <div class="crown"></div>
+        <div class="case"></div>
+        <div class="bezel"></div>
+        <div class="dial"></div>
+        <div class="minute-track"></div>
+        <!-- indices generated by JS -->
+        <div class="indices" id="indices"></div>
+        <div class="sub-dial">
+          <span class="label t">60</span>
+          <span class="label l">40</span>
+          <span class="label r">20</span>
+          <div class="sub-hand" id="subHand"></div>
+        </div>
+        <div class="logo-text"><strong>FRENCH</strong>CONNECTION</div>
+        <div class="hand hour" id="hourHand"></div>
+        <div class="hand minute" id="minuteHand"></div>
+        <div class="hand second" id="secondHand"></div>
+        <div class="cap"></div>
+      </div>
+    </div>
+  </div>
+
+  <main class="scroll-shell">
+    <section class="panel center">
+      <div class="card" style="margin-top:-10vh;">
+        <div class="tag">French Connection</div>
+        <h1>FCN0208UBL</h1>
+        <p class="subtitle">Analog watch for men. Ice-blue dial. Croc-embossed leather strap. Precision, refined.</p>
+        <div class="price"><span class="strike">₹6,950</span>₹3,336</div>
+        <a class="btn" href="#details">Explore the watch</a>
+      </div>
+    </section>
+
+    <section class="panel left" id="details">
+      <div class="card">
+        <h2>Ice-blue guilloché dial</h2>
+        <p class="subtitle">A sunlit turquoise surface with a geometric engine-turned pattern, Roman indices at XII, III, VI, IX, and a running seconds sub-dial.</p>
+        <ul class="features">
+          <li>Stainless-steel polished case</li>
+          <li>Knurled coin-edge bezel</li>
+          <li>Black croc-embossed leather strap</li>
+          <li>Quartz analog movement</li>
+        </ul>
+        <a class="btn" href="#specs">See specifications</a>
+      </div>
+    </section>
+
+    <section class="panel right" id="specs">
+      <div class="card">
+        <h2>Specifications</h2>
+        <div class="specs">
+          <div class="spec"><strong>Brand</strong><span>French Connection</span></div>
+          <div class="spec"><strong>Model</strong><span>FCN0208UBL</span></div>
+          <div class="spec"><strong>Display</strong><span>Analog</span></div>
+          <div class="spec"><strong>Strap</strong><span>Leather</span></div>
+          <div class="spec"><strong>Case</strong><span>Stainless Steel</span></div>
+          <div class="spec"><strong>Dial Color</strong><span>Ice Blue</span></div>
+        </div>
+        <a class="btn" href="https://www.flipkart.com/french-connection-fcn0208ubl-analog-watch-men/p/itmbf3c7192af6b4" target="_blank" rel="noopener">Buy on Flipkart</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Product imagery and data reference Flipkart listing. Built as a static 3D-scrolling demo.
+  </footer>
+
+  <script>
+    // Build indices
+    const indices = document.getElementById('indices');
+    for (let i = 0; i < 12; i++) {
+      const roman = ['XII','','III','','VI','','IX',''][i];
+      const el = document.createElement('div');
+      el.className = roman ? 'index roman' : 'index';
+      el.style.transform = `translateX(-50%) rotate(${i * 30}deg)`;
+      if (roman) {
+        const span = document.createElement('span');
+        span.textContent = roman;
+        span.style.display = 'inline-block';
+        span.style.transform = `rotate(${-i * 30}deg)`;
+        el.appendChild(span);
+      }
+      indices.appendChild(el);
+    }
+
+    // Time animation
+    const hour = document.getElementById('hourHand');
+    const minute = document.getElementById('minuteHand');
+    const second = document.getElementById('secondHand');
+    const sub = document.getElementById('subHand');
+    function tick() {
+      const now = new Date();
+      const s = now.getSeconds() + now.getMilliseconds()/1000;
+      const m = now.getMinutes() + s/60;
+      const h = now.getHours() % 12 + m/60;
+      second.style.transform = `translate(-50%, -100%) rotate(${s * 6}deg)`;
+      minute.style.transform = `translate(-50%, -100%) rotate(${m * 6}deg)`;
+      hour.style.transform = `translate(-50%, -100%) rotate(${h * 30}deg)`;
+      sub.style.transform = `translate(-50%, -100%) rotate(${s * 6}deg)`;
+      requestAnimationFrame(tick);
+    }
+    tick();
+
+    // 3D scroll tilt
+    const watch = document.getElementById('watch');
+    let targetX = 0, targetY = 0, curX = 0, curY = 0;
+    function onScroll() {
+      const max = document.body.scrollHeight - window.innerHeight;
+      const p = max ? window.scrollY / max : 0;
+      targetY = -25 + p * 50;       // tiltX deg
+      targetX = -15 + Math.sin(p * Math.PI) * 25;
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    function animate() {
+      curX += (targetX - curX) * .08;
+      curY += (targetY - curY) * .08;
+      watch.style.transform = `rotateX(${curY}deg) rotateY(${curX}deg)`;
+      requestAnimationFrame(animate);
+    }
+    onScroll();
+    animate();
+
+    // Mouse parallax (subtle)
+    document.addEventListener('mousemove', (e) => {
+      const mx = (e.clientX / window.innerWidth - .5) * 12;
+      const my = (e.clientY / window.innerHeight - .5) * 12;
+      targetX += mx * .015;
+      targetY += my * .015;
+    }, { passive: true });
+  </script>
+</body>
+</html>
