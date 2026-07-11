@@ -76,6 +76,10 @@ else
   gcloud storage buckets create "gs://$BUCKET" --location="$REGION" --uniform-bucket-level-access
 fi
 
+# Clear a stale completion marker from a previous run — otherwise the poll
+# loop below would report old success/accuracy while this run is still training.
+gcloud storage rm "$OUTPUT_URI/_SUCCESS" >/dev/null 2>&1 || true
+
 # --------------------------------------------------------------------------- #
 # Startup script that runs on the VM at boot (config values are expanded here;
 # runtime bits like $(date) are escaped so they run on the VM, not the laptop).
@@ -86,6 +90,12 @@ cat > "$STARTUP_FILE" <<EOF
 #!/bin/bash
 set -xe
 exec > /var/log/sia-train.log 2>&1
+
+# Self-delete on any failure so a broken run doesn't keep billing.
+if [ "${AUTO_DELETE}" = "true" ]; then
+  trap 'echo "[sia] error detected; deleting self to stop billing"; gcloud compute instances delete ${VM} --zone=${ZONE} --quiet || true' ERR
+fi
+
 echo "[sia] startup begin \$(date)"
 
 # Ensure the NVIDIA driver is present (Deep Learning images ship an installer).
@@ -180,6 +190,10 @@ log "waiting up to ${WAIT_TIMEOUT}s for training to finish (polling $OUTPUT_URI/
 elapsed=0
 while ! gcloud storage ls "$OUTPUT_URI/_SUCCESS" >/dev/null 2>&1; do
   if [ "$elapsed" -ge "$WAIT_TIMEOUT" ]; then
+    if [ "$AUTO_DELETE" = "true" ]; then
+      log "timed out; deleting VM to stop billing"
+      gcloud compute instances delete "$VM" --zone="$ZONE" --quiet || true
+    fi
     die "timed out after ${WAIT_TIMEOUT}s. Check the VM log or re-run with a larger WAIT_TIMEOUT."
   fi
   sleep 30

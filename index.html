@@ -464,7 +464,7 @@
     // Build indices
     const indices = document.getElementById('indices');
     for (let i = 0; i < 12; i++) {
-      const roman = ['XII','','III','','VI','','IX',''][i];
+      const roman = ['XII','','','III','','','VI','','','IX','',''][i];
       const el = document.createElement('div');
       el.className = roman ? 'index roman' : 'index';
       el.style.transform = `translateX(-50%) rotate(${i * 30}deg)`;
@@ -499,6 +499,7 @@
     // 3D scroll tilt
     const watch = document.getElementById('watch');
     let targetX = 0, targetY = 0, curX = 0, curY = 0;
+    let mouseX = 0, mouseY = 0;
     function onScroll() {
       const max = document.body.scrollHeight - window.innerHeight;
       const p = max ? window.scrollY / max : 0;
@@ -507,8 +508,8 @@
     }
     window.addEventListener('scroll', onScroll, { passive: true });
     function animate() {
-      curX += (targetX - curX) * .08;
-      curY += (targetY - curY) * .08;
+      curX += (targetX + mouseX - curX) * .08;
+      curY += (targetY + mouseY - curY) * .08;
       watch.style.transform = `rotateX(${curY}deg) rotateY(${curX}deg)`;
       requestAnimationFrame(animate);
     }
@@ -519,8 +520,8 @@
     document.addEventListener('mousemove', (e) => {
       const mx = (e.clientX / window.innerWidth - .5) * 12;
       const my = (e.clientY / window.innerHeight - .5) * 12;
-      targetX += mx * .015;
-      targetY += my * .015;
+      mouseX = mx * .15;
+      mouseY = my * .15;
     }, { passive: true });
   </script>
 </body>

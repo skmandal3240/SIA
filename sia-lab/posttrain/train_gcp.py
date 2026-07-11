@@ -86,12 +86,17 @@ def assistant_target(sample: dict) -> str:
 # --------------------------------------------------------------------------- #
 def dry_run(args: argparse.Namespace) -> int:
     """Run every non-GPU check: imports, schema, LoRA target list, and dataset."""
-    # Import trl here so dry-run still validates the version/call sites we rely on.
+    # If trl is installed, import it so dry-run also validates the call sites
+    # (SFTConfig/SFTTrainer) we rely on against that version. Not installing
+    # trl at all is expected in a plain CI environment and is not a failure —
+    # this function's whole point is to work without the heavy training deps.
     try:
-        from trl import SFTConfig, SFTTrainer  # type: ignore
+        from trl import SFTConfig, SFTTrainer  # type: ignore  # noqa: F401
         print("trl import ok")
+    except ModuleNotFoundError:
+        print("trl not installed; skipping trl call-site check (schema/config checks still run)")
     except Exception as e:
-        print(f"trl import failed: {e}")
+        print(f"trl import failed (installed but broken/incompatible): {e}")
         return 1
 
     train = load_chat_json(Path(args.train))
