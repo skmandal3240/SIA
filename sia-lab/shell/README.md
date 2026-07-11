@@ -59,5 +59,4 @@ python3 -c "from audio import record_audio; open('/tmp/sia_input.wav','wb').writ
 
 - Replace STT stub with a local Whisper / Sarvam edge model.
 - Replace TTS stub with Piper / Coqui edge model.
-- Add macOS screen-capture-permission handling.
 - Wire memory stores (`sia-lab/memory/`) into the loop context.
