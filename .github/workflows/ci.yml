@@ -23,3 +23,18 @@ jobs:
 
       - name: make run
         run: make run
+
+  installer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: scripts/install.sh
+        run: ./scripts/install.sh
+
+      - name: bin/sia
+        run: ./bin/sia

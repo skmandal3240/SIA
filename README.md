@@ -12,7 +12,7 @@ SIA is an edge-first AI companion that runs locally on phones, laptops, mini-PCs
 | **P3 — Deep core** | RDT-MoE+MLA+ACT reasoner beats fast path on multi-hop | 80% | Router, governor, deep-path + memory; `make reasoner-p3` passes; real LFM2.5 up-cycle needs GPU training |
 | **P4 — Memory + eval** | TokenCake + episodic + GraphRAG wired to reasoner/shell | 85% | Memory wired into reasoner and shell; `make p4-memory` passes |
 | **P5 — Swarm + distillation** | N=2 swarm loop and Mixture-of-Students lift | 75% | N=2 swarm + MoS scaffold; `make swarm-p5` passes |
-| **P6 — Harden** | Governor authority, DPDP hooks, quant matrix, OTA adapters | 68% | Privacy egress test + encrypted-at-rest audit log/memory stores (crypto-shred via device keystore, `make p6-harden`) + OTA manifest; still needs a real installer/packaging pass |
+| **P6 — Harden** | Governor authority, DPDP hooks, quant matrix, OTA adapters | 74% | Privacy egress test + encrypted-at-rest audit log/memory stores (crypto-shred via device keystore, `make p6-harden`) + OTA manifest + `./scripts/install.sh` / `./bin/sia` installer; still needs OTA adapter update wired end-to-end |
 
 **Overall V1 public release readiness: blocked on P1 GPU training (core engine ready, actions not trained).**
 
@@ -23,11 +23,19 @@ SIA is an edge-first AI companion that runs locally on phones, laptops, mini-PCs
 3. **Deep core up-cycled from LFM2.5 and proven to beat fast path on multi-hop.**
 4. **Memory stores wired to the reasoner and shell.**
 5. **Swarm demo with measured distillation lift.**
-6. **Packaging: installer and OTA adapter update.** (DPDP audit log and encryption at rest for local stores are done — `sia-lab/safety/crypto.py`, `make p6-harden`.)
+6. **OTA adapter update wired end-to-end.** (DPDP audit log, encryption at rest, and the installer are done — `sia-lab/safety/crypto.py`, `make p6-harden`, `scripts/install.sh`.)
 
 ## Quick start
 
 ```bash
+./scripts/install.sh   # one-time: creates .venv, installs dependencies
+./bin/sia               # build + run the full stack end-to-end on the from-scratch core (no training)
+```
+
+Or, without the installer, using an existing Python 3.10+ environment:
+
+```bash
+pip install -r requirements.txt
 make run       # build + run the full stack end-to-end on the from-scratch core (no training)
 make ci        # lint + validate + smoke + eval + status
 make privacy   # network egress test
