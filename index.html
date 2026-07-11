@@ -464,7 +464,7 @@
     // Build indices
     const indices = document.getElementById('indices');
     for (let i = 0; i < 12; i++) {
-      const roman = ['XII','','III','','VI','','IX',''][i];
+      const roman = ['XII','','','III','','','VI','','','IX','',''][i];
       const el = document.createElement('div');
       el.className = roman ? 'index roman' : 'index';
       el.style.transform = `translateX(-50%) rotate(${i * 30}deg)`;
