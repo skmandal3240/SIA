@@ -22,7 +22,7 @@ validate:
 
 smoke:
 	@echo "==> smoke: dry-run all pipelines"
-	$(PYTHON) sia-lab/posttrain/sft.py
+	$(PYTHON) sia-lab/posttrain/sft.py --dry-run
 	$(PYTHON) sia-lab/infra/quantize.py --bits 8
 	$(PYTHON) sia-lab/infra/benchmark.py
 	$(PYTHON) sia-lab/reasoner/reasoner.py

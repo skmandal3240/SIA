@@ -54,7 +54,7 @@ in retrieved memory. No GPU required.
 ## GPU training command
 
 ```bash
-python3 sia-lab/posttrain/sft.py --run --base unsloth/Llama-3.2-1B-Instruct
+python3 sia-lab/posttrain/sft.py --base unsloth/Llama-3.2-1B-Instruct
 ```
 
 ## License
