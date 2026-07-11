@@ -1,4 +1,4 @@
-.PHONY: ci lint validate smoke eval status privacy shell-p2 reasoner-p3 v1-status p4-memory run
+.PHONY: ci lint validate smoke eval status privacy shell-p2 reasoner-p3 v1-status p4-memory p6-harden run
 
 PYTHON := python3
 
@@ -6,7 +6,7 @@ FILES := $(shell find sia-lab -name '*.py' -type f)
 
 SHELL_TESTS := sia-lab/shell/tests/test_shell.py
 
-ci: lint validate smoke eval status
+ci: lint validate smoke eval p6-harden status
 
 lint:
 	@echo "==> lint: checking Python scripts"
@@ -64,12 +64,19 @@ v1-status:
 	$(PYTHON) sia-lab/memory/episodic.py
 	$(PYTHON) sia-lab/memory/graphrag.py
 	$(PYTHON) sia-lab/swarm/swarm.py
+	$(PYTHON) sia-lab/safety/crypto.py
 	$(PYTHON) sia-lab/safety/audit.py
 	$(PYTHON) sia-lab/infra/ota.py
 	$(PYTHON) sia-lab/safety/privacy.py
 
 privacy:
 	@echo "==> privacy: network egress test"
+	$(PYTHON) sia-lab/safety/privacy.py
+
+p6-harden:
+	@echo "==> P6 harden: encryption-at-rest + audit + privacy"
+	$(PYTHON) sia-lab/safety/crypto.py
+	$(PYTHON) sia-lab/safety/audit.py
 	$(PYTHON) sia-lab/safety/privacy.py
 
 eval:

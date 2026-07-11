@@ -25,3 +25,7 @@ models/
 .venv/
 .worktrees/
 sia-lab/eval/outputs/
+
+# Device keystore (safety/crypto.py) -- never commit key material
+.sia/
+*.key

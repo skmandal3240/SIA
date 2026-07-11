@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import sys
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -126,13 +127,24 @@ class EpisodicStore:
             )
             self._episodes[ep.key] = ep
 
-    def save(self, path: Path | str) -> None:
-        Path(path).write_text(json.dumps(self.dump(), indent=2, ensure_ascii=False))
+    def save(self, path: Path | str, keystore: "DeviceKeystore | None" = None) -> None:
+        """Persist to disk, encrypted at rest through the device keystore."""
+        sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+        from safety.crypto import DeviceKeystore
+
+        ks = keystore or DeviceKeystore()
+        payload = json.dumps(self.dump(), ensure_ascii=False).encode("utf-8")
+        Path(path).write_bytes(ks.encrypt(payload))
 
     @classmethod
-    def from_file(cls, path: Path | str) -> "EpisodicStore":
+    def from_file(cls, path: Path | str, keystore: "DeviceKeystore | None" = None) -> "EpisodicStore":
+        sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+        from safety.crypto import DeviceKeystore
+
+        ks = keystore or DeviceKeystore()
         store = cls()
-        store.load(json.loads(Path(path).read_text()))
+        payload = ks.decrypt(Path(path).read_bytes())
+        store.load(json.loads(payload))
         return store
 
 
@@ -145,6 +157,15 @@ def demo() -> None:
     assert store.get("alarm") is not None
     results = store.search("alarm clock morning")
     assert results[0][0] == "alarm", results
+
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        p = Path(tmp) / "episodic.enc"
+        store.save(p)
+        assert b"alarm" not in p.read_bytes(), "save() must not write plaintext content"
+        restored = EpisodicStore.from_file(p)
+        assert restored.get("alarm") is not None
+
     print("EpisodicStore demo passed:", results[:2])
 
 
