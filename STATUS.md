@@ -12,7 +12,7 @@ Last updated: 2026-07-07
 | P3 — Deep core | 80% | Router, governor, deep-path + memory retrieval; `make reasoner-p3` |
 | P4 — Memory | 85% | TokenCake + episodic + GraphRAG wired; `make p4-memory` |
 | P5 — Swarm + distillation | 75% | N=2 swarm + MoS scaffold; `make swarm-p5` |
-| P6 — Harden | 68% | Privacy egress test + encrypted-at-rest audit log/memory stores (crypto-shred via device keystore) + OTA manifest; `make p6-harden`; still needs a real installer/packaging pass |
+| P6 — Harden | 72% | Privacy egress test + encrypted-at-rest audit log/memory stores (crypto-shred via device keystore) + OTA adapter update wired end-to-end (download/verify/atomic-install); `make p6-harden`; still needs a real installer/packaging pass |
 | Integration | ✅ runnable | P2–P5 wired into one perceive→route→reason→remember→act→speak loop; from-scratch deep core executes (untrained); `make run` |
 
 ## Build & run the model (no training)

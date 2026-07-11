@@ -74,10 +74,11 @@ privacy:
 	$(PYTHON) sia-lab/safety/privacy.py
 
 p6-harden:
-	@echo "==> P6 harden: encryption-at-rest + audit + privacy"
+	@echo "==> P6 harden: encryption-at-rest + audit + privacy + OTA update"
 	$(PYTHON) sia-lab/safety/crypto.py
 	$(PYTHON) sia-lab/safety/audit.py
 	$(PYTHON) sia-lab/safety/privacy.py
+	$(PYTHON) sia-lab/infra/ota.py
 
 eval:
 	@echo "==> eval: memory + benchmark harness"
