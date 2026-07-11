@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Run the full SIA stack (see scripts/install.sh to set up dependencies first).
+set -euo pipefail
+
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+VENV_DIR="${SIA_VENV_DIR:-$REPO_ROOT/.venv}"
+
+if [ -x "$VENV_DIR/bin/python" ]; then
+    PYTHON_BIN="$VENV_DIR/bin/python"
+else
+    echo "warning: no venv at $VENV_DIR -- run ./scripts/install.sh first; falling back to system python3" >&2
+    PYTHON_BIN="python3"
+fi
+
+exec "$PYTHON_BIN" "$REPO_ROOT/sia-lab/run_sia.py" "$@"
