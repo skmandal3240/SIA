@@ -132,7 +132,9 @@ if [ -z "$IMAGE_FAMILY" ]; then
   IMAGE_FAMILY=$(gcloud compute images list \
     --project="$IMAGE_PROJECT" \
     --filter="family~'${img_pat}'" \
-    --format="value(family)" 2>/dev/null | sort -Vu | tail -n1)
+    --sort-by="~creationTimestamp" \
+    --limit=1 \
+    --format="value(family)" 2>/dev/null)
 fi
 [ -n "$IMAGE_FAMILY" ] || die "could not resolve an image family in $IMAGE_PROJECT. List options with: gcloud compute images list --project $IMAGE_PROJECT --format=\"value(family)\" | sort -u"
 log "boot image family: $IMAGE_FAMILY ($IMAGE_PROJECT)"
