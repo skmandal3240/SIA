@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 from typing import Any
 
@@ -60,13 +61,24 @@ class GraphRAGStub:
             for t in data.get("triples", [])
         ]
 
-    def save(self, path: Path | str) -> None:
-        Path(path).write_text(json.dumps(self.dump(), indent=2, ensure_ascii=False))
+    def save(self, path: Path | str, keystore: "DeviceKeystore | None" = None) -> None:
+        """Persist to disk, encrypted at rest through the device keystore."""
+        sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+        from safety.crypto import DeviceKeystore
+
+        ks = keystore or DeviceKeystore()
+        payload = json.dumps(self.dump(), ensure_ascii=False).encode("utf-8")
+        Path(path).write_bytes(ks.encrypt(payload))
 
     @classmethod
-    def from_file(cls, path: Path | str) -> "GraphRAGStub":
+    def from_file(cls, path: Path | str, keystore: "DeviceKeystore | None" = None) -> "GraphRAGStub":
+        sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+        from safety.crypto import DeviceKeystore
+
+        ks = keystore or DeviceKeystore()
         stub = cls()
-        stub.load(json.loads(Path(path).read_text()))
+        payload = ks.decrypt(Path(path).read_bytes())
+        stub.load(json.loads(payload))
         return stub
 
 
@@ -78,6 +90,15 @@ def demo() -> None:
     assert len(q) == 2, q
     hops = g.multi_hop("SIA", hops=2)
     assert len(hops) == 2, hops
+
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        p = Path(tmp) / "graphrag.enc"
+        g.save(p)
+        assert b"wake_up" not in p.read_bytes(), "save() must not write plaintext content"
+        restored = GraphRAGStub.from_file(p)
+        assert len(restored.query("alarm")) == 2
+
     print("GraphRAGStub demo passed:", len(hops), "paths")
 
 

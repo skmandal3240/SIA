@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import sys
 from collections import deque
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -104,13 +105,25 @@ class TokenCake:
             self._slices.append(s)
         self._evict()
 
-    def save(self, path: Path | str) -> None:
-        Path(path).write_text(json.dumps(self.dump(), indent=2, ensure_ascii=False))
+    def save(self, path: Path | str, keystore: "DeviceKeystore | None" = None) -> None:
+        """Persist to disk, encrypted at rest through the device keystore."""
+        sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+        from safety.crypto import DeviceKeystore
+
+        ks = keystore or DeviceKeystore()
+        payload = json.dumps(self.dump(), ensure_ascii=False).encode("utf-8")
+        Path(path).write_bytes(ks.encrypt(payload))
 
     @classmethod
-    def from_file(cls, path: Path | str, budget: int = 4096, reserve: int = 256) -> "TokenCake":
+    def from_file(cls, path: Path | str, budget: int = 4096, reserve: int = 256,
+                   keystore: "DeviceKeystore | None" = None) -> "TokenCake":
+        sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+        from safety.crypto import DeviceKeystore
+
+        ks = keystore or DeviceKeystore()
         cake = cls(budget=budget, reserve=reserve)
-        cake.load(json.loads(Path(path).read_text()))
+        payload = ks.decrypt(Path(path).read_bytes())
+        cake.load(json.loads(payload))
         return cake
 
 
@@ -139,6 +152,16 @@ def demo() -> None:
     restored = TokenCake(budget=100, reserve=10)
     restored.load(cake2.dump())
     assert any(s.pinned and s.content == "IMPORTANT fact" for s in restored._slices)
+
+    import tempfile
+    with tempfile.TemporaryDirectory() as tmp:
+        p = Path(tmp) / "tokencake.enc"
+        cake2.save(p)
+        assert b"IMPORTANT fact" not in p.read_bytes(), "save() must not write plaintext content"
+        restored2 = TokenCake.from_file(p, budget=100, reserve=10)
+        restored2_contents = [m["content"] for m in restored2.to_messages()]
+        assert "IMPORTANT fact" in restored2_contents, restored2_contents
+
     print("TokenCake pin demo passed:", contents)
 
 

@@ -5,7 +5,7 @@ This directory tracks the metadata and recipe for the SIA Phase 1 LoRA adapter.
 The actual 1.1 GB checkpoint is too large for Git. Download it from the Google Drive link in the README, or re-train it with:
 
 ```bash
-python3 sia-lab/posttrain/sft.py --run --base unsloth/Llama-3.2-1B-Instruct
+python3 sia-lab/posttrain/sft.py --base unsloth/Llama-3.2-1B-Instruct
 ```
 
 ## Adapter config

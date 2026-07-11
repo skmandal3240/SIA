@@ -2,17 +2,22 @@
 """DPDP audit logger for SIA.
 
 Records every cloud egress and device action with timestamp, classification,
-and retention metadata. Stored locally on device; supports user-triggered
+and retention metadata. Stored locally on device, encrypted at rest through
+the shared DeviceKeystore (safety/crypto.py); supports user-triggered
 erasure.
 """
 
 from __future__ import annotations
 
 import json
+import sys
 import time
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from safety.crypto import DeviceKeystore  # noqa: E402
 
 
 @dataclass
@@ -26,15 +31,19 @@ class AuditEvent:
 
 
 class AuditLog:
-    """Append-only local audit log."""
+    """Append-only local audit log, encrypted at rest one event per line."""
 
-    def __init__(self, path: Path | str = "/tmp/sia_audit.jsonl") -> None:
+    def __init__(self, path: Path | str = "/tmp/sia_audit.jsonl",
+                 keystore: DeviceKeystore | None = None) -> None:
         self.path = Path(path)
         self.path.parent.mkdir(parents=True, exist_ok=True)
+        self.keystore = keystore or DeviceKeystore()
 
     def log(self, event: AuditEvent) -> None:
-        with self.path.open("a", encoding="utf-8") as f:
-            f.write(json.dumps(asdict(event), ensure_ascii=False) + "\n")
+        plaintext = json.dumps(asdict(event), ensure_ascii=False).encode("utf-8")
+        token = self.keystore.encrypt(plaintext)
+        with self.path.open("ab") as f:
+            f.write(token + b"\n")
 
     def record_egress(self, host: str, port: int, allowed: bool) -> None:
         self.log(AuditEvent(
@@ -57,7 +66,7 @@ class AuditLog:
         ))
 
     def erase(self) -> None:
-        self.path.write_text("")
+        self.path.write_bytes(b"")
         self.log(AuditEvent(
             timestamp=time.time(),
             event_type="erasure",
@@ -70,8 +79,8 @@ class AuditLog:
     def read(self, limit: int = 100) -> list[dict[str, Any]]:
         if not self.path.exists():
             return []
-        lines = self.path.read_text().strip().splitlines()
-        return [json.loads(ln) for ln in lines[-limit:]]
+        lines = [ln for ln in self.path.read_bytes().splitlines() if ln]
+        return [json.loads(self.keystore.decrypt(ln)) for ln in lines[-limit:]]
 
 
 def main() -> int:

@@ -21,5 +21,5 @@
 - **Kaggle**: free T4/P100, 30 GPU hours/week.
 - **RunPod**: rent L4 at ~$0.25/hour. Run the same notebook or the direct command:
   ```bash
-  python3 sia-lab/posttrain/sft.py --run --base unsloth/Llama-3.2-1B-Instruct
+  python3 sia-lab/posttrain/sft.py --base unsloth/Llama-3.2-1B-Instruct
   ```
