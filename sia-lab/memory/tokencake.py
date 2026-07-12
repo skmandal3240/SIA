@@ -7,7 +7,10 @@ import sys
 from collections import deque
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Sequence
+from typing import TYPE_CHECKING, Any, Sequence
+
+if TYPE_CHECKING:
+    from safety.crypto import DeviceKeystore
 
 
 @dataclass

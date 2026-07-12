@@ -5,7 +5,10 @@ from __future__ import annotations
 import json
 import sys
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
+
+if TYPE_CHECKING:
+    from safety.crypto import DeviceKeystore
 
 
 class GraphRAGStub:

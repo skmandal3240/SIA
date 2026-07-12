@@ -8,7 +8,10 @@ import sys
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Callable
+from typing import TYPE_CHECKING, Any, Callable
+
+if TYPE_CHECKING:
+    from safety.crypto import DeviceKeystore
 
 
 @dataclass
