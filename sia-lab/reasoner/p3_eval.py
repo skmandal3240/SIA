@@ -20,7 +20,6 @@ sys.path.insert(0, str(ROOT.parent / "memory"))
 sys.path.insert(0, str(ROOT.parent))
 
 from multi_hop import MultiHopBench, trivial_solver
-from memory import GraphRAGStub
 from router import SIRRouter
 from deep_path import DeepPath
 from governor_client import GovernorClient

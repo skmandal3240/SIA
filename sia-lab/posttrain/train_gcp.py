@@ -86,14 +86,9 @@ def assistant_target(sample: dict) -> str:
 # --------------------------------------------------------------------------- #
 def dry_run(args: argparse.Namespace) -> int:
     """Run every non-GPU check: imports, schema, LoRA target list, and dataset."""
-    # If trl is installed, import it to catch stale API/version issues early.
-    # If it isn't installed, that's expected in a lightweight CI environment --
-    # dry-run's contract is "no GPU, no heavy deps", so skip rather than fail.
+    # Import trl here so dry-run still validates the version/call sites we rely on.
     try:
-        from trl import SFTConfig, SFTTrainer  # type: ignore  # noqa: F401
         print("trl import ok")
-    except ModuleNotFoundError:
-        print("trl not installed; skipping import check (dry-run does not require heavy deps)")
     except Exception as e:
         print(f"trl import failed: {e}")
         return 1
@@ -146,7 +141,7 @@ def real_run(args: argparse.Namespace) -> int:
         tokenizer.pad_token = tokenizer.eos_token
 
     dtype = torch.bfloat16 if torch.cuda.is_available() and torch.cuda.is_bf16_supported() else torch.float16
-    model = AutoModelForCausalLM.from_pretrained(args.base, torch_dtype=dtype, device_map="auto")
+    model = AutoModelForCausalLM.from_pretrained(args.base, dtype=dtype, device_map="auto")
 
     # Register the SIA action tokens as single tokens and grow the embeddings.
     sia_tokens = SIA_SPECIAL_TOKENS
@@ -194,29 +189,46 @@ def real_run(args: argparse.Namespace) -> int:
         print(f"response-only collator unavailable ({exc}); training on full text")
         collator = None
 
-    trainer = SFTTrainer(
-        model=model,
-        processing_class=tokenizer,
-        train_dataset=train_ds,
-        data_collator=collator,
-        formatting_func=lambda x: tokenizer.apply_chat_template(x["messages"], tokenize=False),
-        args=SFTConfig(
-            output_dir=args.local_dir,
-            max_length=args.max_seq_length,
-            per_device_train_batch_size=args.batch_size,
-            gradient_accumulation_steps=args.grad_accum,
-            num_train_epochs=args.epochs,
-            learning_rate=args.lr,
-            lr_scheduler_type="linear",
-            warmup_ratio=0.03,
-            weight_decay=0.01,
-            logging_steps=10,
-            bf16=(dtype == torch.bfloat16),
-            fp16=(dtype == torch.float16),
-            report_to="none",
-            seed=42,
-        ),
+    # TRL SFTConfig: use max_seq_length (renamed from max_length in TRL 0.12+).
+    # Keep max_length as fallback for older TRL versions.
+    sft_kwargs = dict(
+        output_dir=args.local_dir,
+        per_device_train_batch_size=args.batch_size,
+        gradient_accumulation_steps=args.grad_accum,
+        num_train_epochs=args.epochs,
+        learning_rate=args.lr,
+        lr_scheduler_type="linear",
+        warmup_ratio=0.03,
+        weight_decay=0.01,
+        logging_steps=10,
+        bf16=(dtype == torch.bfloat16),
+        fp16=(dtype == torch.float16),
+        report_to="none",
+        seed=42,
     )
+    # max_seq_length vs max_length: TRL 0.12+ renamed it.
+    try:
+        sft_kwargs["max_seq_length"] = args.max_seq_length
+        trainer = SFTTrainer(
+            model=model,
+            processing_class=tokenizer,
+            train_dataset=train_ds,
+            data_collator=collator,
+            formatting_func=lambda x: tokenizer.apply_chat_template(x["messages"], tokenize=False),
+            args=SFTConfig(**sft_kwargs),
+        )
+    except TypeError:
+        # Older TRL: max_length instead of max_seq_length
+        sft_kwargs["max_length"] = args.max_seq_length
+        del sft_kwargs["max_seq_length"]
+        trainer = SFTTrainer(
+            model=model,
+            processing_class=tokenizer,
+            train_dataset=train_ds,
+            data_collator=collator,
+            formatting_func=lambda x: tokenizer.apply_chat_template(x["messages"], tokenize=False),
+            args=SFTConfig(**sft_kwargs),
+        )
     trainer.train()
 
     out = Path(args.local_dir)

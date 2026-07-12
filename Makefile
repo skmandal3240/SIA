@@ -1,12 +1,13 @@
-.PHONY: ci lint validate smoke eval status privacy shell-p2 reasoner-p3 v1-status p4-memory p6-harden run
+.PHONY: ci lint validate smoke eval status privacy shell-p2 reasoner-p3 v1-status p4-memory run test harden
 
 PYTHON := python3
 
 FILES := $(shell find sia-lab -name '*.py' -type f)
 
 SHELL_TESTS := sia-lab/shell/tests/test_shell.py
+INTEGRATION_TESTS := sia-lab/tests/test_integration.py
 
-ci: lint validate smoke eval p6-harden status
+ci: lint validate smoke eval test status
 
 lint:
 	@echo "==> lint: checking Python scripts"
@@ -28,6 +29,10 @@ smoke:
 	$(PYTHON) sia-lab/reasoner/reasoner.py
 	$(PYTHON) sia-lab/reasoner/tiny_overfit.py
 	$(PYTHON) sia-lab/run_sia.py
+
+test:
+	@echo "==> test: integration test suite"
+	$(PYTHON) $(INTEGRATION_TESTS)
 
 run:
 	@echo "==> run: full SIA stack end-to-end (perceive -> route -> reason -> remember -> act -> speak)"
@@ -57,6 +62,14 @@ p4-memory:
 	$(PYTHON) sia-lab/memory/graphrag.py
 	$(PYTHON) sia-lab/shell/smoke_p4.py
 
+harden:
+	@echo "==> P6 harden: privacy + audit + consent + encryption + OTA"
+	$(PYTHON) sia-lab/safety/privacy.py
+	$(PYTHON) sia-lab/safety/audit.py
+	$(PYTHON) sia-lab/safety/consent.py
+	$(PYTHON) sia-lab/safety/encryption.py
+	$(PYTHON) sia-lab/infra/ota.py
+
 v1-status:
 	@echo "==> V1 remaining tasks status"
 	$(PYTHON) sia-lab/posttrain/generate_dataset.py --n 100
@@ -64,19 +77,14 @@ v1-status:
 	$(PYTHON) sia-lab/memory/episodic.py
 	$(PYTHON) sia-lab/memory/graphrag.py
 	$(PYTHON) sia-lab/swarm/swarm.py
-	$(PYTHON) sia-lab/safety/crypto.py
 	$(PYTHON) sia-lab/safety/audit.py
+	$(PYTHON) sia-lab/safety/consent.py
+	$(PYTHON) sia-lab/safety/encryption.py
 	$(PYTHON) sia-lab/infra/ota.py
 	$(PYTHON) sia-lab/safety/privacy.py
 
 privacy:
 	@echo "==> privacy: network egress test"
-	$(PYTHON) sia-lab/safety/privacy.py
-
-p6-harden:
-	@echo "==> P6 harden: encryption-at-rest + audit + privacy"
-	$(PYTHON) sia-lab/safety/crypto.py
-	$(PYTHON) sia-lab/safety/audit.py
 	$(PYTHON) sia-lab/safety/privacy.py
 
 eval:

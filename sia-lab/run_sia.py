@@ -143,7 +143,7 @@ class SIARuntime:
     def run_turn(self, query: str, context: list[str] | None = None) -> TurnTrace:
         context = context or []
         # Perceive: screen + streamed transcript (P2).
-        screenshot = self.capture.grab()
+        self.capture.grab()
         stt = StreamingSTTStub([query])
         transcript = ""
         for text in stt.stream(iter([b"audio"])):

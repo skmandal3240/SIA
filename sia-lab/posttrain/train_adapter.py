@@ -11,7 +11,6 @@ from __future__ import annotations
 import json
 import os
 import sys
-from pathlib import Path
 
 DRY_RUN = os.environ.get("SIA_DRY_RUN", "1") == "1"
 BASE_MODEL = os.environ.get("SIA_BASE_MODEL", "liquidai/LFM2.5-1.2B-Instruct")

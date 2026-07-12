@@ -18,7 +18,7 @@ sys.path.insert(0, str(ROOT / "sia-lab"))
 from shell.loop import ShellLoop
 from shell.capture import CaptureStub
 from shell.stt import StreamingSTTStub
-from memory import TokenCake, GraphRAGStub, EpisodicStore
+from memory import TokenCake, EpisodicStore
 
 
 def main() -> int:
@@ -26,7 +26,6 @@ def main() -> int:
     cake.add("user", "My name is Saurabh.", tokens=20)
     cake.add("assistant", "Hello Saurabh.", tokens=15)
 
-    graph = GraphRAGStub()
     episodes = EpisodicStore()
 
     def reason(shot: dict, transcript: str, context: str) -> tuple[str, list[dict]]:

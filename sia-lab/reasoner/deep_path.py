@@ -104,12 +104,11 @@ class DeepPath:
         prompt += "Question: " + question + "\nAnswer: "
         idx = self._encode(prompt)
 
-        # Governor budget: reduce depth when hot/low-battery.
-        if budget:
-            self.cfg = SIRConfig(**{**self.cfg.__dict__, "act_max_steps": budget.get("act_max_steps", self.cfg.act_max_steps)})
-            self.model = SIRReasoner(self.cfg)
-            self._vocab = None  # ponytail: vocab will be rebuilt for new size if needed
-            self._inv = None
+        # Governor budget: reduce depth when hot/low-battery. Only adjust
+        # act_max_steps — do NOT recreate the model (that destroys vocab state
+        # and wastes compute). The reasoner reads cfg.act_max_steps at runtime.
+        if budget and "act_max_steps" in budget:
+            self.cfg = SIRConfig(**{**self.cfg.__dict__, "act_max_steps": budget["act_max_steps"]})
 
         input_len = idx.shape[1]
         self.model.eval()

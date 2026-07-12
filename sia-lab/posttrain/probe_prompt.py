@@ -2,7 +2,6 @@
 """Quick probe: does a stronger system prompt make the adapter emit SIA tool tags?"""
 from __future__ import annotations
 
-import json
 from pathlib import Path
 
 from peft import AutoPeftModelForCausalLM

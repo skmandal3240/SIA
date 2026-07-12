@@ -60,7 +60,7 @@ def evaluate(adapter_dir: Path, val_path: Path, output_path: Path) -> dict:
     print(f"loading base model {BASE_MODEL}")
     model = AutoModelForCausalLM.from_pretrained(
         BASE_MODEL,
-        torch_dtype=torch.float16,
+        dtype=torch.float16,
         device_map="auto",
         trust_remote_code=True,
     )

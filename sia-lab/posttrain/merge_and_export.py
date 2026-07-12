@@ -7,7 +7,6 @@ HF weights and print the llama.cpp conversion command.
 from __future__ import annotations
 
 import argparse
-import os
 import sys
 from pathlib import Path
 
@@ -25,7 +24,7 @@ def merge(adapter_dir: Path, merged_dir: Path) -> None:
     # AutoPeftModel handles special-token embedding resize automatically.
     model = AutoPeftModelForCausalLM.from_pretrained(
         str(adapter_dir),
-        torch_dtype=torch.float16,
+        dtype=torch.float16,
         device_map="auto",
         trust_remote_code=True,
     )
@@ -58,7 +57,7 @@ def export_gguf(merged_dir: Path, gguf_path: Path) -> bool:
         print(f"unsloth GGUF export failed: {exc}")
 
     print("\nFallback: convert merged HF weights with llama.cpp")
-    print(f"  git clone https://github.com/ggerganov/llama.cpp")
+    print("  git clone https://github.com/ggerganov/llama.cpp")
     print(f"  python3 llama.cpp/convert_hf_to_gguf.py {merged_dir} --outfile {gguf_path} --outtype q4_k_m")
     return False
 

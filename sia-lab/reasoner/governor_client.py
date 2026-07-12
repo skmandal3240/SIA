@@ -11,7 +11,6 @@ eval harness can perturb for repeatable tests.
 
 from __future__ import annotations
 
-import random
 
 
 class GovernorClient:

@@ -14,9 +14,8 @@ passing gate: forward/backward, loop, routing, cache, and halting work.
 """
 from __future__ import annotations
 
-import math
 from dataclasses import dataclass
-from typing import Iterator, Tuple
+from typing import Tuple
 
 import torch
 import torch.nn as nn

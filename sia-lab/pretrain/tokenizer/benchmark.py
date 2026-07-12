@@ -15,7 +15,7 @@ import statistics
 from pathlib import Path
 from typing import Callable
 
-from sia_tokenizer import SIA_TOKENIZER, load_or_train
+from sia_tokenizer import load_or_train
 
 
 def _words(text: str) -> list[str]:

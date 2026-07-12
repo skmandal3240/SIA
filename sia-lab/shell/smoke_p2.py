@@ -18,7 +18,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "sia-lab"))
 
-from shell.capture import default_capture, CaptureStub
+from shell.capture import default_capture
 from shell.stt import StreamingSTTStub
 from shell.tts import StreamingTTSStub
 from shell.dispatcher import Dispatcher

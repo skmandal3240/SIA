@@ -92,7 +92,6 @@ class MultiHopBench:
 
 def trivial_solver(context: list[str], question: str) -> str:
     """Baseline solver: concatenate context and pick a keyword answer."""
-    text = " ".join(context).lower()
     q = question.lower()
     if "bus" in q and ("how long" in q or "journey" in q):
         return "2 hours"
